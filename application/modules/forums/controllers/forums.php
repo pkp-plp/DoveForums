@@ -37,7 +37,7 @@ class Forums extends Front_Controller {
         $this->pagination->initialize($config);
 
         // Get discussions from the database.
-        $discussions = $this->discussions->get_discussions($this->config->item('discussions_per_page'), $config['uri_segment']);
+        $discussions = $this->discussions->get_discussions($config['per_page'], $config['uri_segment']);
 
         $has_discussions = ( is_array($discussions) ? TRUE : FALSE );
 
@@ -52,10 +52,10 @@ class Forums extends Front_Controller {
                 $user = $this->dove_core->user($discussion['last_comment_by']);
 
                 // See if the discussion is a sticky.
-                $announcement = ( $discussion['announcement'] == 1 ? $this->lang->line('text_announcement') : '' );
+                $announcement = ( $discussion['announcement'] == 1 ? $this->lang->line('text_announcement') : NULL );
 
                 // See if the discussion is closed.
-                $closed = ( $discussion['closed'] == 1 ? $this->lang->line('text_closed') : '' );
+                $closed = ( $discussion['closed'] == 1 ? $this->lang->line('text_closed') : NULL );
 
                 // Is the discussion been marked as answered.
                 if ( $discussion['answered'] == 0 )
@@ -130,12 +130,12 @@ class Forums extends Front_Controller {
 
         if( isset($filter) )
         {
-            if ( strtolower($filter) == 'unanswered_discussions')
+            if ( strtolower($filter) == 'unanswered_discussions' )
             {
                 $config['total_rows'] = $this->discussions->count_unanswered_discussions();
                 $data['page_title'] = $this->lang->line('page_unanswered');
             }
-            elseif ( strtolower($filter) == 'my_discussions')
+            elseif ( strtolower($filter) == 'my_discussions' )
             {
                 $config['total_rows'] = $this->discussions->count_user_discussions($this->session->userdata('user_id'));
                 $data['page_title'] = $this->lang->line('page_my_discussions');
@@ -153,17 +153,17 @@ class Forums extends Front_Controller {
         $data['unanswered'] = 0;
         $data['my_discussions'] = 0;
 
-        if (($discussions))
+        if ( ($discussions) )
         {
             foreach($discussions as $discussion)
             {
                 $user = $this->dove_core->user($discussion['last_comment_by']);
 
                 // See if the discussion is a sticky.
-                $announcement = ( $discussion['announcement'] == 1 ? $this->lang->line('text_announcement') : '' );
+                $announcement = ( $discussion['announcement'] == 1 ? $this->lang->line('text_announcement') : NULL );
 
                 // See if the discussion is closed.
-                $closed = ( $discussion['closed'] == 1 ? $this->lang->line('text_closed') : '' );
+                $closed = ( $discussion['closed'] == 1 ? $this->lang->line('text_closed') : NULL );
 
                 if ( $discussion['answered'] == 0 )
                 {

@@ -112,7 +112,7 @@ class Discussions extends Front_Controller {
         $category_id = $this->categories->get_id_by_category_permalink($category_permalink);
 
         // Get the latest discussions.
-        $discussions = $this->discussions->get_category_discussions($category_id, $this->config->item('discussions_per_page'), $this->uri->segment('3'));
+        $discussions = $this->discussions->get_category_discussions($category_id, $config['per_page'], $config['uri_segment']);
 
         $has_discussions = ( is_array($discussions) ? TRUE : FALSE );
 
@@ -127,12 +127,10 @@ class Discussions extends Front_Controller {
                 $user = $this->dove_core->user($discussion['last_comment_by']);
 
                 // See if the discussion is a sticky.
-                $announcement = ( $discussion['announcement'] == 1
-                    ? $this->lang->line('text_announcement')
-                    : '' );
+                $announcement = ( $discussion['announcement'] == 1 ? $this->lang->line('text_announcement') : NULL );
 
                 // See if the discussion is closed.
-                $closed = ( $discussion['closed'] == 1 ? $this->lang->line('text_closed') : '' );
+                $closed = ( $discussion['closed'] == 1 ? $this->lang->line('text_closed') : NULL );
 
                 if ( $discussion['answered'] == 0 )
                 {
@@ -187,9 +185,9 @@ class Discussions extends Front_Controller {
             'discussions' => $data['discussions'],
             'pagination' => $this->pagination->create_links(),
             'has_discussions' => $has_discussions,
-            'btn_unanswered_discussions' => anchor( site_url('discussions/unanswered_discussions'), sprintf($this->lang->line('btn_unanswered_discussions'), $this->discussions->count_unanswered_discussions()), 'class="btn btn-default btn-xs"'),
-            'btn_all_discussions' => anchor( site_url(), sprintf($this->lang->line('btn_all_discussions'), $this->discussions->count_all_discussions()), 'class="btn btn-default btn-sx active"'),
-            'btn_my_discussions' => anchor( site_url('discussions/my_discussions'), sprintf($this->lang->line('btn_my_discussions'), $this->discussions->count_user_discussions($this->session->userdata('user_id'))), 'class="btn btn-default btn-xs"'),
+            'btn_unanswered_discussions' => anchor( site_url('discussions/unanswered_discussions'), sprintf( $this->lang->line('btn_unanswered_discussions'), $this->discussions->count_unanswered_discussions() ), 'class="btn btn-default btn-xs"'),
+            'btn_all_discussions' => anchor( site_url(), sprintf( $this->lang->line('btn_all_discussions'), $this->discussions->count_all_discussions() ), 'class="btn btn-default btn-sx active"'),
+            'btn_my_discussions' => anchor( site_url('discussions/my_discussions'), sprintf( $this->lang->line('btn_my_discussions'), $this->discussions->count_user_discussions($this->session->userdata('user_id')) ), 'class="btn btn-default btn-xs"'),
             'page_title' => 'All Discussions',
         );
 

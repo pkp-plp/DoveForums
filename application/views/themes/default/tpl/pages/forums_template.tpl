@@ -51,7 +51,7 @@
                                 <span>{discussion_info->comments}</span>
                             </div>
                         </div>
-                        <!-- IF {auth->logged_in} AND {owned} == 1 -->
+                        <!-- IF {auth->logged_in} AND {discussion_info->owned} == 1 -->
                         <div class="col-md-1">
                             <div class="btn-group-vertical">
                                 <!-- IF {permissions->edit_discussions->value} == 1 -->

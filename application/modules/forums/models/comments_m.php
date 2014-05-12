@@ -44,8 +44,8 @@ class comments_m extends CI_Model {
         ');
 
         // Join
-        $this->db->join('users', 'users.id = comments.created_by');
-        $this->db->join('groups', 'groups.id = users.group_id');
+        $this->db->join('users', 'users.id = comments.created_by')
+                    ->join('groups', 'groups.id = users.group_id');
 
         // Where.
         $this->db->where('discussion_id', $discussion_id);
@@ -80,16 +80,10 @@ class comments_m extends CI_Model {
 
     public function count_discussion_comments($discussion_id)
     {
-        // Select
-        $this->db->select('*');
-
-        // Options.
-        $options = array(
-            'discussion_id' => $discussion_id,
-        );
-
-        // Query.
-        $query = $this->db->get_where('comments', $options);
+        // Query
+        $query = $this->db->select('*')
+                            ->where('discussion_id', $discussion_id)
+                            ->get($this->tables['comments']);
 
         // Result.
         return ( $query->num_rows() > 0 ? $query->num_rows() : 0 );

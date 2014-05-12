@@ -151,12 +151,12 @@ class discussions_m extends CI_Model {
 
         // Join.
         $this->db->join('categories', 'categories.id = discussions.category_id')
-            ->join('users', 'users.id = discussions.created_by');
+                    ->join('users', 'users.id = discussions.created_by');
 
         // Order By
         $this->db->order_by('announcement', 'desc')
-            ->order_by('discussion_id', 'desc')
-            ->order_by('answered', 'desc');
+                    ->order_by('discussion_id', 'desc')
+                    ->order_by('answered', 'desc');
 
         // Limit
         $this->db->limit($limit, $offset);
@@ -282,9 +282,6 @@ class discussions_m extends CI_Model {
             $this->db->trans_commit();
             return TRUE;
         }
-
-        // Result.
-        //return ( $this->db->affected_rows() > 0 ?  true  : false);
     }
 
     public function get_id_from_permalink($permalink)
@@ -298,7 +295,7 @@ class discussions_m extends CI_Model {
         $query = $this->db->get($this->tables['discussions']);
 
         // Result.
-        return ( $query->num_rows() > 0 ? $query->row('discussion_id') : 0);
+        return ( $query->num_rows() > 0 ? $query->row('discussion_id') : 0 );
     }
 
     public function delete($discussion_id)
