@@ -29,10 +29,11 @@ class categories_m extends CI_Model {
     {
         // Select.
         $this->db->select('
-            category_id,
-            category_name,
-            category_permalink,
-            category_description
+            id,
+            name,
+            permalink,
+            description,
+            order,
         ');
 
         // Query.
@@ -44,10 +45,11 @@ class categories_m extends CI_Model {
             foreach($query->result_array() as $row)
             {
                 $data[] = array(
-                    'category_id'           => $row['category_id'],
-                    'category_name'         => $row['category_name'],
-                    'category_permalink'    => $row['category_permalink'],
-                    'category_description'  => $row['category_description'],
+                    'id'            => $row['id'],
+                    'name'          => $row['name'],
+                    'permalink'     => $row['permalink'],
+                    'description'   => $row['description'],
+                    'order'         => $row['order'],
                 );
             }
 
@@ -73,11 +75,42 @@ class categories_m extends CI_Model {
         $query = $this->db->get_where('discussions', $options);
 
         // Result.
-        if($query->num_rows() > 0)
+        return ( $query->num_rows() > 0 ? $query->num_rows() : 0 );
+    }
+
+    public function get_category_permalink_by_id($category_id)
+    {
+        // Query.
+        $query = $this->db->select('permalink')
+                            ->where('id', $category_id)
+                            ->limit(1)
+                            ->get('categories');
+
+        if ( $query->num_rows() > 0 )
         {
-            return $query->num_rows();
-        } else {
-            return '0';
+            return $query->row('category_permalink');
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
+    public function get_id_by_category_permalink($category_permalink)
+    {
+        // Query.
+        $query = $this->db->select('id')
+                            ->where('permalink', $category_permalink)
+                            ->limit(1)
+                            ->get('categories');
+
+        if( $query->num_rows() > 0 )
+        {
+            return $query->row('id');
+        }
+        else
+        {
+            return FALSE;
         }
     }
 }

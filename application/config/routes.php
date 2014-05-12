@@ -41,17 +41,23 @@
 $route['default_controller'] = "forums";
 $route['404_override'] = '';
 
-// discussions
-$route['discussion/(:any)'] = 'forums/$1';
+// Discussions.
 $route['discussion/delete_discussion/(:any)'] = 'forums/delete_discussion/$1';
 $route['discussion/edit_discussion/(:any)'] = 'forums/edit_discussion/$1';
 $route['discussion/(:any)/(:any)'] = 'forums/discussions/view/$1/$2';
+$route['discussion/(:any)'] = 'forums/discussions/index/$1';
 
-// Categories
-$route['categories'] = 'forums/categories/view';
-$route['categories/(:any)'] = 'forums/categories/view/$1';
+//$route['discussions/(:any)'] = 'forums/discussions/$1';
 
-// Members
+// Forums.
+$route['discussions'] = 'forums';
+$route['discussions/(:any)'] = 'forums/filtered/$1';
+
+// Categories.
+$route['categories'] = 'forums';
+$route['categories/(:any)'] = 'forums/discussions/index/$1';
+
+// Members.
 $route['members/(:any)'] = 'forums/members/$1';
 
 

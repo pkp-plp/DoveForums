@@ -26,6 +26,9 @@
 // Page Titles.
 $lang['page_home'] = 'Forums Home';
 $lang['page_new_discussion'] = 'New Discussion';
+$lang['page_discussions'] = 'Discussions';
+$lang['page_unanswered'] = 'Unanswered Discussions';
+$lang['page_my_discussions'] = 'My Discussions';
 
 // Panel Headings.
 $lang['panel_categories'] = 'Categories';
@@ -35,11 +38,18 @@ $lang['panel_sign_in'] = 'Sign In';
 
 // Text
 $lang['text_account'] = 'Account';
-$lang['text_sticky'] = '<i class="fa fa-info"></i> Sticky';
-$lang['text_closed'] = '<i class="fa fa-lock"></i> Closed - ';
+$lang['text_announcement'] = '<span class="label label-warning" title="Announcement"><i class="fa fa-bullhorn"></i></span>';
+$lang['text_closed'] = '<span class="label label-danger" title="Closed"><i class="fa fa-lock"></i></span>';
+
+// Link Titles.
+$lang['title_answered'] = 'Answered Discussion';
+$lang['title_unanswered'] = 'Unanswered Discussion';
 
 // Buttons
 $lang['btn_new_discussion'] = '<i class="glyphicon glyphicon-comment"></i> New Discussion';
+$lang['btn_all_discussions'] = 'All Discussions <span class="label label-default"> %u </span>';
+$lang['btn_unanswered_discussions'] = 'Unanswered <span class="label label-default"> %u </span>';
+$lang['btn_my_discussions'] = 'My Discussions <span class="label label-default"> %u </span>';
 
 // Form Rules
 $lang['rules_discussion_name'] = 'Discussion Name';
@@ -47,8 +57,10 @@ $lang['rules_discussion_name'] = 'Discussion Name';
 // Labels
 $lang['label_discussion_name'] = 'Discussion Name';
 $lang['label_comment'] = 'Comment';
-$lang['label_category'] = 'Category';
+$lang['label_category'] = '%s Category';
 $lang['label_tags'] = 'Tags';
+$lang['label_answered'] = '<i class="fa fa-check"></i>&nbsp;Answered';
+$lang['label_unanswered'] = 'Unanswered';
 
 // Placeholder Text.
 $lang['placeholder_discussion_name'] = 'Enter discussion name.';

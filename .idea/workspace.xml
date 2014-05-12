@@ -23,55 +23,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="MY_Controller.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/core/MY_Controller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="135" column="66" selection-start="4666" selection-end="4666" vertical-scroll-proportion="-19.125" vertical-offset="1566" max-vertical-offset="3405">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="forums.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/modules/forums/controllers/forums.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="191" column="103" selection-start="8418" selection-end="8418" vertical-scroll-proportion="-15.0" vertical-offset="2505" max-vertical-offset="3660">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Permissions.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/libraries/Permissions.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="35" selection-start="486" selection-end="486" vertical-scroll-proportion="0.33795494" vertical-offset="75" max-vertical-offset="975">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="navigation_template.tpl" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/sections/navigation_template.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="43" selection-start="1331" selection-end="1331" vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="630">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="comments_m.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/forums/models/comments_m.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="5" selection-start="1538" selection-end="1538" vertical-scroll-proportion="-22.791666" vertical-offset="278" max-vertical-offset="930">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="categories.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/forums/controllers/categories.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="0" selection-start="1521" selection-end="1521" vertical-scroll-proportion="-22.791666" vertical-offset="173" max-vertical-offset="855">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="discussions_m.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/forums/models/discussions_m.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="53" selection-start="1983" selection-end="1983" vertical-scroll-proportion="-29.041666" vertical-offset="158" max-vertical-offset="2145">
+            <state line="135" column="285" selection-start="5217" selection-end="5259" vertical-scroll-proportion="-6.875" vertical-offset="1860" max-vertical-offset="6150">
               <folding />
             </state>
           </provider>
@@ -80,7 +44,34 @@
       <file leaf-file-name="categories_m.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/modules/forums/models/categories_m.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="5" selection-start="2241" selection-end="2241" vertical-scroll-proportion="-19.666666" vertical-offset="743" max-vertical-offset="1320">
+            <state line="98" column="48" selection-start="2624" selection-end="2652" vertical-scroll-proportion="-9.666667" vertical-offset="1238" max-vertical-offset="1815">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forums_m.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/modules/forums/models/forums_m.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="72" selection-start="824" selection-end="824" vertical-scroll-proportion="-17.5" vertical-offset="0" max-vertical-offset="1020">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="discussions_m.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/modules/forums/models/discussions_m.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="50" column="59" selection-start="1807" selection-end="1807" vertical-scroll-proportion="-12.791667" vertical-offset="443" max-vertical-offset="5550">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="discussions.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/modules/forums/controllers/discussions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="122" column="5" selection-start="6270" selection-end="6270" vertical-scroll-proportion="0.2393617" vertical-offset="1695" max-vertical-offset="2520">
               <folding />
             </state>
           </provider>
@@ -89,25 +80,16 @@
       <file leaf-file-name="members.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/modules/forums/controllers/members.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="35" selection-start="1871" selection-end="1871" vertical-scroll-proportion="-12.5" vertical-offset="585" max-vertical-offset="1950">
+            <state line="66" column="14" selection-start="2121" selection-end="2121" vertical-scroll-proportion="-22.791666" vertical-offset="443" max-vertical-offset="2610">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ion_auth_model.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/ion_auth_model.php">
+      <file leaf-file-name="forums_template.tpl" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/pages/forums_template.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1694" column="25" selection-start="39635" selection-end="39656" vertical-scroll-proportion="-28.48" vertical-offset="23986" max-vertical-offset="31485">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ion_auth.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/config/ion_auth.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="49" selection-start="3818" selection-end="3818" vertical-scroll-proportion="-16.25" vertical-offset="915" max-vertical-offset="2715">
+            <state line="15" column="26" selection-start="686" selection-end="686" vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="1215">
               <folding />
             </state>
           </provider>
@@ -123,19 +105,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/application/config/database.php" />
-        <option value="$PROJECT_DIR$/application/core/MY_Front_Controller.php" />
-        <option value="$PROJECT_DIR$/application/views/test.php" />
-        <option value="$PROJECT_DIR$/application/controllers/test.php" />
-        <option value="$PROJECT_DIR$/application/modules/test/views/test_template.php" />
-        <option value="$PROJECT_DIR$/application/views/pages/test.php" />
-        <option value="$PROJECT_DIR$/application/modules/test/controllers/test.php" />
-        <option value="$PROJECT_DIR$/application/views/templates/default/tpl/pages/test.php" />
-        <option value="$PROJECT_DIR$/application/views/templates/default/tpl/sections/right_sidebar.php" />
-        <option value="$PROJECT_DIR$/application/views/templates/default/tpl/sections/left_sidebar.php" />
-        <option value="$PROJECT_DIR$/application/views/templates/default/tpl/sections/header_template.php" />
-        <option value="$PROJECT_DIR$/application/views/templates/default/tpl/sections/navigation_template.php" />
-        <option value="$PROJECT_DIR$/application/views/templates/default/tpl/sections/footer_template.php" />
         <option value="$PROJECT_DIR$/application/views/templates/default/css/custom.css" />
         <option value="$PROJECT_DIR$/application/views/templates/default/tpl/default.php" />
         <option value="$PROJECT_DIR$/application/libraries/Parser.php" />
@@ -144,35 +113,49 @@
         <option value="$PROJECT_DIR$/application/views/.htaccess" />
         <option value="$PROJECT_DIR$/application/views/themes/default/tpl/sections/left_sidebar_template.tpl" />
         <option value="$PROJECT_DIR$/application/views/themes/default/tpl/pages/forums.tpl" />
-        <option value="$PROJECT_DIR$/application/views/themes/default/tpl/pages/view_template.tpl" />
-        <option value="$PROJECT_DIR$/application/modules/forums/controllers/discussions.php" />
         <option value="$PROJECT_DIR$/application/helpers/breadcrumb_helper.php" />
-        <option value="$PROJECT_DIR$/application/modules/forums/models/users_m.php" />
-        <option value="$PROJECT_DIR$/application/views/themes/default/tpl/sections/right_sidebar_template.tpl" />
         <option value="$PROJECT_DIR$/application/config/pagination.php" />
-        <option value="$PROJECT_DIR$/application/config/config.php" />
         <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/application/config/breadcrumb.php" />
-        <option value="$PROJECT_DIR$/application/config/autoload.php" />
-        <option value="$PROJECT_DIR$/application/views/themes/default/tpl/default.tpl" />
-        <option value="$PROJECT_DIR$/application/views/themes/default/tpl/pages/new_discussion_template.tpl" />
         <option value="$PROJECT_DIR$/application/views/themes/default/css/bootstrap-tagsinput.css" />
         <option value="$PROJECT_DIR$/application/views/themes/default/css/custom.css" />
-        <option value="$PROJECT_DIR$/application/modules/forums/language/en/frontend_lang.php" />
-        <option value="$PROJECT_DIR$/application/config/routes.php" />
         <option value="$PROJECT_DIR$/application/views/themes/default/js/custom.js" />
-        <option value="$PROJECT_DIR$/application/views/themes/default/tpl/pages/sign_in_template.tpl" />
         <option value="$PROJECT_DIR$/application/config/ion_auth.php" />
-        <option value="$PROJECT_DIR$/application/modules/forums/models/categories_m.php" />
-        <option value="$PROJECT_DIR$/application/modules/forums/models/comments_m.php" />
         <option value="$PROJECT_DIR$/application/modules/forums/controllers/categories.php" />
-        <option value="$PROJECT_DIR$/application/core/MY_Controller.php" />
         <option value="$PROJECT_DIR$/application/views/themes/default/tpl/sections/navigation_template.tpl" />
-        <option value="$PROJECT_DIR$/application/views/themes/default/tpl/pages/forums_template.tpl" />
-        <option value="$PROJECT_DIR$/application/modules/forums/controllers/members.php" />
-        <option value="$PROJECT_DIR$/application/modules/forums/models/discussions_m.php" />
-        <option value="$PROJECT_DIR$/application/modules/forums/controllers/forums.php" />
         <option value="$PROJECT_DIR$/application/libraries/Permissions.php" />
+        <option value="$PROJECT_DIR$/application/views/themes/default/tpl/sections/messages_template.tpl" />
+        <option value="$PROJECT_DIR$/application/config/messages.php" />
+        <option value="$PROJECT_DIR$/application/language/english/messages_lang.php" />
+        <option value="$PROJECT_DIR$/application/libraries/Messages.php" />
+        <option value="$PROJECT_DIR$/application/modules/forums/models/messages_m.php" />
+        <option value="$PROJECT_DIR$/application/views/themes/default/tpl/default.tpl" />
+        <option value="$PROJECT_DIR$/application/config/dove_auth.php" />
+        <option value="$PROJECT_DIR$/application/modules/forums/models/users_m.php" />
+        <option value="$PROJECT_DIR$/application/config/dove_core.php" />
+        <option value="$PROJECT_DIR$/application/modules/forums/config/forums.php" />
+        <option value="$PROJECT_DIR$/application/config/config.php" />
+        <option value="$PROJECT_DIR$/application/config/database.php" />
+        <option value="$PROJECT_DIR$/application/modules/forums/models/comments_m.php" />
+        <option value="$PROJECT_DIR$/application/language/english/dove_core_lang.php" />
+        <option value="$PROJECT_DIR$/application/modules/forums/models/forums_m.php" />
+        <option value="$PROJECT_DIR$/application/views/themes/default/tpl/pages/forums_template_1.tpl" />
+        <option value="$PROJECT_DIR$/application/views/themes/default/tpl/sections/right_sidebar_template.tpl" />
+        <option value="$PROJECT_DIR$/application/views/themes/default/tpl/pages/new_discussion_template.tpl" />
+        <option value="$PROJECT_DIR$/application/config/autoload.php" />
+        <option value="$PROJECT_DIR$/application/views/themes/default/tpl/pages/view_template.tpl" />
+        <option value="$PROJECT_DIR$/application/libraries/dove_core.php" />
+        <option value="$PROJECT_DIR$/application/models/dove_core_m.php" />
+        <option value="$PROJECT_DIR$/application/modules/forums/language/en/frontend_lang.php" />
+        <option value="$PROJECT_DIR$/application/modules/forums/models/categories_m.php" />
+        <option value="$PROJECT_DIR$/application/views/themes/default/tpl/pages/sign_in_template.tpl" />
+        <option value="$PROJECT_DIR$/application/views/themes/default/tpl/pages/forums_template.tpl" />
+        <option value="$PROJECT_DIR$/application/core/MY_Controller.php" />
+        <option value="$PROJECT_DIR$/application/modules/forums/controllers/members.php" />
+        <option value="$PROJECT_DIR$/application/config/routes.php" />
+        <option value="$PROJECT_DIR$/application/modules/forums/controllers/forums.php" />
+        <option value="$PROJECT_DIR$/application/modules/forums/models/discussions_m.php" />
+        <option value="$PROJECT_DIR$/application/modules/forums/controllers/discussions.php" />
       </list>
     </option>
   </component>
@@ -461,6 +444,36 @@
               <option name="myItemId" value="default" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forums" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forums" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="default" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -628,6 +641,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forums" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forums" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forums" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -647,6 +686,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forums" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forums" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="language" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="english" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forums" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forums" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helpers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -697,16 +776,20 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="SearchEverywhereHistory" value="" />
+    <property name="SearchEverywhereHistory" value="&#10;&quot;" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/htdocs/dove_simple/application/themes/default/tpl/default_layout.tpl" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/application/modules/forums/controllers" />
+      <recent name="$PROJECT_DIR$/application/views/themes/default/tpl/pages" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/application/modules/forums/models" />
       <recent name="$PROJECT_DIR$/application/views" />
       <recent name="$PROJECT_DIR$/application/views/themes" />
       <recent name="$PROJECT_DIR$/application/views/themes/default/css" />
       <recent name="$PROJECT_DIR$/application/modules/test/controllers" />
-      <recent name="$PROJECT_DIR$/application/modules/test/views" />
     </key>
   </component>
   <component name="RunManager">
@@ -756,16 +839,16 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24609375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -792,55 +875,11 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/modules/forums/models/users_m.php">
+    <entry file="file://$PROJECT_DIR$/application/helpers/breadcrumb_helper.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="907" selection-end="907" vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="495" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/core/MY_Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="70" selection-start="2657" selection-end="2657" vertical-scroll-proportion="0.0" vertical-offset="735" max-vertical-offset="1785">
+        <state line="58" column="0" selection-start="2569" selection-end="2685" vertical-scroll-proportion="0.0" vertical-offset="3336" max-vertical-offset="6570">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="67" selection-start="1547" selection-end="1547" vertical-scroll-proportion="0.0" vertical-offset="117" max-vertical-offset="870">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/core/MY_Front_Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="20" selection-start="218" selection-end="218" vertical-scroll-proportion="0.17118402" vertical-offset="0" max-vertical-offset="701" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/forums/views/test_template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="17" selection-start="93" selection-end="93" vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="225" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/libraries/Settings.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-2.1902654" vertical-offset="1485" max-vertical-offset="4515" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="702">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/libraries/Parser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1171" column="51" selection-start="30930" selection-end="30930" vertical-scroll-proportion="-10.833333" vertical-offset="17065" max-vertical-offset="18645" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/sections/footer_template.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="37" selection-start="83" selection-end="83" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="150" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/sections/left_sidebar_template.tpl">
@@ -851,11 +890,6 @@
     <entry file="file://$USER_HOME$/Downloads/htdocs/dove_simple/application/modules/categories/models/categories_m.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="910" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3315" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="36" selection-start="2741" selection-end="2741" vertical-scroll-proportion="0.5707965" vertical-offset="408" max-vertical-offset="1110" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Downloads/htdocs/dove_simple/application/themes/default/tpl/pages/home/home.tpl">
@@ -883,38 +917,6 @@
         <state line="2" column="9" selection-start="26" selection-end="26" vertical-scroll-proportion="0.044247787" vertical-offset="0" max-vertical-offset="678" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/libraries/Gravatar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="18.75" vertical-offset="450" max-vertical-offset="2505" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/libraries/Ion_auth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="35" selection-start="1244" selection-end="1244" vertical-scroll-proportion="-0.713615" vertical-offset="1416" max-vertical-offset="7890" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/helpers/breadcrumb_helper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="0" selection-start="2569" selection-end="2685" vertical-scroll-proportion="0.0" vertical-offset="2865" max-vertical-offset="6570">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/forums/controllers/discussions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="875" selection-end="875" vertical-scroll-proportion="0.42477876" vertical-offset="72" max-vertical-offset="750" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/pages/view_template.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="678" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/forums/models/users_m.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="5" selection-start="1121" selection-end="1121" vertical-scroll-proportion="-23.125" vertical-offset="0" max-vertical-offset="660" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="28" selection-start="169" selection-end="169" vertical-scroll-proportion="0.08547009" vertical-offset="0" max-vertical-offset="702" />
@@ -922,189 +924,236 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/config/pagination.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="49" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="630">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/breadcrumb.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="147" column="41" selection-start="5222" selection-end="5222" vertical-scroll-proportion="-11.25" vertical-offset="1935" max-vertical-offset="4785" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/autoload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="62" selection-start="2062" selection-end="2062" vertical-scroll-proportion="0.4787234" vertical-offset="720" max-vertical-offset="1815">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/sections/right_sidebar_template.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="43" selection-start="143" selection-end="143" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="975">
-          <folding />
-        </state>
+        <state line="3" column="49" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="630" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/themes/default/js/bootstrap-select.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="3" selection-start="34" selection-end="81" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
-          <folding />
-        </state>
+        <state line="2" column="3" selection-start="34" selection-end="81" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/themes/default/js/application.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="4" selection-start="325" selection-end="359" vertical-scroll-proportion="0.37437603" vertical-offset="0" max-vertical-offset="1395">
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
+        <state line="15" column="4" selection-start="325" selection-end="359" vertical-scroll-proportion="0.37437603" vertical-offset="0" max-vertical-offset="1395" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/themes/default/css/custom.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="1" selection-start="702" selection-end="702" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
-          <folding />
-        </state>
+        <state line="33" column="1" selection-start="702" selection-end="702" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/themes/default/css/bootstrap-tagsinput.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="25" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="25" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/themes/default/js/custom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="21" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/forums/controllers/categories.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="0" selection-start="1521" selection-end="1521" vertical-scroll-proportion="-22.791666" vertical-offset="173" max-vertical-offset="855" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/sections/navigation_template.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="43" selection-start="1331" selection-end="1331" vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="630" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="601" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3150" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/sections/messages_template.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="10" selection-start="225" selection-end="225" vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="165" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/themes/default/js/bootstrap-tagsinput.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="2" selection-start="6748" selection-end="6748" vertical-scroll-proportion="0.18683274" vertical-offset="0" max-vertical-offset="562" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/default.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="73" selection-start="1074" selection-end="1074" vertical-scroll-proportion="-15.625" vertical-offset="0" max-vertical-offset="1185">
+        <state line="33" column="56" selection-start="1521" selection-end="1521" vertical-scroll-proportion="0.38666666" vertical-offset="263" max-vertical-offset="990" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/forums/config/forums.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="44" selection-start="191" selection-end="191" vertical-scroll-proportion="0.10398614" vertical-offset="0" max-vertical-offset="577" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/dove_core.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="60" selection-start="424" selection-end="424" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="615" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="293" column="25" selection-start="10320" selection-end="10320" vertical-scroll-proportion="-48.416668" vertical-offset="3233" max-vertical-offset="5520" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="25" selection-start="2533" selection-end="2533" vertical-scroll-proportion="-8.625" vertical-offset="453" max-vertical-offset="1110" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/Settings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="39.083332" vertical-offset="938" max-vertical-offset="4515" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/Gravatar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="2505" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/forums/models/comments_m.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="44" selection-start="2290" selection-end="2290" vertical-scroll-proportion="0.0" vertical-offset="1020" max-vertical-offset="1830" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/language/english/dove_core_lang.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="15" selection-start="673" selection-end="681" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="255" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/forums/models/users_m.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="11" selection-start="1269" selection-end="1269" vertical-scroll-proportion="-28.125" vertical-offset="0" max-vertical-offset="795" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/sections/right_sidebar_template.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="0" selection-start="84" selection-end="84" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="1185" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/autoload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="145" selection-start="1775" selection-end="1775" vertical-scroll-proportion="-1.9583334" vertical-offset="763" max-vertical-offset="1815" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/pages/new_discussion_template.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="18" selection-start="586" selection-end="586" vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="540" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/pages/view_template.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="72" selection-start="1854" selection-end="1854" vertical-scroll-proportion="-14.375" vertical-offset="255" max-vertical-offset="825" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/dove_core.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="118" column="5" selection-start="2818" selection-end="2818" vertical-scroll-proportion="-19.666666" vertical-offset="1298" max-vertical-offset="1890" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/dove_core_m.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="704" column="5" selection-start="18417" selection-end="18417" vertical-scroll-proportion="-19.125" vertical-offset="10101" max-vertical-offset="10665" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/Slug.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-2.8856153" vertical-offset="1665" max-vertical-offset="3255" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/helpers/breadcrumb_helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="0" selection-start="2569" selection-end="2685" vertical-scroll-proportion="0.0" vertical-offset="3336" max-vertical-offset="6570">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/forums/language/en/frontend_lang.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="35" selection-start="1150" selection-end="1150" vertical-scroll-proportion="-2.2820513" vertical-offset="317" max-vertical-offset="885">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="35" selection-start="1917" selection-end="1917" vertical-scroll-proportion="-20.666666" vertical-offset="314" max-vertical-offset="960">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/pages/new_discussion_template.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="36" selection-start="367" selection-end="367" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="615">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/themes/default/js/custom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="21" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
+        <state line="29" column="22" selection-start="1025" selection-end="1040" vertical-scroll-proportion="0.0" vertical-offset="263" max-vertical-offset="1065">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/pages/sign_in_template.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="21" selection-start="21" selection-end="21" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+        <state line="29" column="26" selection-start="1113" selection-end="1113" vertical-scroll-proportion="-15.0" vertical-offset="75" max-vertical-offset="690">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/config.php">
+    <entry file="file://$PROJECT_DIR$/application/modules/forums/models/forums_m.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="25" selection-start="911" selection-end="911" vertical-scroll-proportion="9.375" vertical-offset="645" max-vertical-offset="5520">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/ion_auth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="49" selection-start="3818" selection-end="3818" vertical-scroll-proportion="-16.25" vertical-offset="915" max-vertical-offset="2715">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/ion_auth_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1694" column="25" selection-start="39635" selection-end="39656" vertical-scroll-proportion="-28.48" vertical-offset="23986" max-vertical-offset="31485">
+        <state line="28" column="72" selection-start="824" selection-end="824" vertical-scroll-proportion="-17.5" vertical-offset="0" max-vertical-offset="1020">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/forums/models/categories_m.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="5" selection-start="2241" selection-end="2241" vertical-scroll-proportion="-19.666666" vertical-offset="743" max-vertical-offset="1320">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/forums/models/comments_m.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="5" selection-start="1538" selection-end="1538" vertical-scroll-proportion="-22.791666" vertical-offset="278" max-vertical-offset="930">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/forums/controllers/categories.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="0" selection-start="1521" selection-end="1521" vertical-scroll-proportion="-22.791666" vertical-offset="173" max-vertical-offset="855">
+        <state line="98" column="48" selection-start="2624" selection-end="2652" vertical-scroll-proportion="-9.666667" vertical-offset="1238" max-vertical-offset="1815">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/core/MY_Controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="30" selection-start="2386" selection-end="2399" vertical-scroll-proportion="0.34574467" vertical-offset="795" max-vertical-offset="2175">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/sections/navigation_template.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="43" selection-start="1331" selection-end="1331" vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="630">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/pages/forums_template.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="24" selection-start="238" selection-end="238" vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="1170">
+        <state line="135" column="66" selection-start="4666" selection-end="4666" vertical-scroll-proportion="-19.125" vertical-offset="1566" max-vertical-offset="3405">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/forums/controllers/members.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="35" selection-start="1871" selection-end="1871" vertical-scroll-proportion="-12.5" vertical-offset="585" max-vertical-offset="1950">
+        <state line="66" column="14" selection-start="2121" selection-end="2121" vertical-scroll-proportion="-22.791666" vertical-offset="443" max-vertical-offset="2610">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/breadcrumb.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="147" column="41" selection-start="5222" selection-end="5222" vertical-scroll-proportion="-3.1223404" vertical-offset="3966" max-vertical-offset="4785">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="30" selection-start="1970" selection-end="1970" vertical-scroll-proportion="1.4558059" vertical-offset="0" max-vertical-offset="1050">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/themes/default/tpl/pages/forums_template.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="26" selection-start="686" selection-end="686" vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="1215">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/forums/models/discussions_m.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="53" selection-start="1983" selection-end="1983" vertical-scroll-proportion="-29.041666" vertical-offset="158" max-vertical-offset="2145">
+        <state line="50" column="59" selection-start="1807" selection-end="1807" vertical-scroll-proportion="-12.791667" vertical-offset="443" max-vertical-offset="5550">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/forums/controllers/forums.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="191" column="103" selection-start="8418" selection-end="8418" vertical-scroll-proportion="-15.0" vertical-offset="2505" max-vertical-offset="3660">
+        <state line="135" column="285" selection-start="5217" selection-end="5259" vertical-scroll-proportion="-6.875" vertical-offset="1860" max-vertical-offset="6150">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/libraries/Permissions.php">
+    <entry file="file://$PROJECT_DIR$/application/modules/forums/controllers/discussions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="35" selection-start="486" selection-end="486" vertical-scroll-proportion="0.33795494" vertical-offset="75" max-vertical-offset="975">
+        <state line="122" column="5" selection-start="6270" selection-end="6270" vertical-scroll-proportion="0.2393617" vertical-offset="1695" max-vertical-offset="2520">
           <folding />
         </state>
       </provider>

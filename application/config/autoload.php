@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('session', 'database', 'Parser', 'settings', 'gravatar', 'ion_auth', 'pagination', 'form_validation');
+$autoload['libraries'] = array('session', 'database', 'Parser', 'settings', 'gravatar', 'dove_core', 'pagination', 'form_validation', 'user_agent');
 
 
 /*

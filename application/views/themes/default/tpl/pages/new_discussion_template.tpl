@@ -21,11 +21,6 @@
             </div>
 
             <div class="form-group">
-                {tags_label}
-                {tags_field}
-            </div>
-
-            <div class="form-group">
                 <div class="pull-right">
                     {clear_button}
                     {submit_button}

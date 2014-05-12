@@ -36,4 +36,13 @@ class users_m extends CI_Model {
         // Result.
         return $query->num_rows();
     }
+
+    public function get_sidebar_members()
+    {
+        // Select.
+        $this->db->select('
+            email,
+            username
+        ');
+    }
 }

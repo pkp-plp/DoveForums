@@ -18,11 +18,7 @@
     <link href="{T_Folder}/css/bootstrap.belizehole.min.css" rel="stylesheet">
     <link href="{T_Folder}/css/plan.belizehole.min.css" rel="stylesheet">
     <link href="{T_Folder}/css/bootstrap-select.min.css" rel="stylesheet">
-
-    <!-- Bootstrap Select CSS -->
     <link rel="stylesheet" href="{T_Folder}/css/bootstrap-select.min.css">
-
-    <!-- Bootstrap Tags CSS -->
     <link rel="stylesheet" href="{T_Folder}/css/bootstrap-tagsinput.css">
 
     <!-- JQuery -->
@@ -31,21 +27,11 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap Select JS -->
+    <!-- JS -->
     <script src="{T_Folder}/js/bootstrap-select.min.js"></script>
-
-    <!-- Theme UI elements JS -->
     <script src="{T_Folder}/js/plan.ui.js"></script>
-
-    <!-- Bootstrap Tags JS -->
     <script src="{T_Folder}/js/bootstrap-tagsinput.min.js"></script>
-
-    <!-- Custom JS -->
     <script src="{T_Folder}/js/application.js"></script>
-
-    <!-- HTML5 WYSIWYG Editor -->
-    <script src="{T_Folder}/js/bootstrap-wysiwyg.js"></script>
-    <script src="{T_Folder}/js/jquery.hotkeys.js"></script>
     <script src="{T_Folder}/js/google-code-prettify/prettify.js"></script>
 
     <!-- Custom CSS -->
@@ -61,6 +47,7 @@
         <div class="row">
             <div class="col-md-9">
                 {breadcrumb}
+                {messages}
                 {content}
             </div>
             <div class="col-md-3">

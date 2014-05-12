@@ -40,6 +40,32 @@ class Members extends Front_Controller {
                 'label' => 'lang:rules_password',
             ),
         ),
+        'sign_up' => array(
+            //0
+            array(
+                'field' => 'username',
+                'rules' => 'required',
+                'label' => 'lang:rules_username',
+            ),
+            //1
+            array(
+                'field' => 'password',
+                'rules' => 'required|matches[confirm_password]',
+                'label' => 'lang:rules_password',
+            ),
+            //2
+            array(
+                'field' => 'confirm_password',
+                'rules' => 'required',
+                'label' => 'lang:rules_confirm_password',
+            ),
+            //3
+            array(
+                'field' => 'email',
+                'rules' => 'required',
+                'label' => 'lang:email',
+            ),
+        )
     );
 
     private $form_fields = array(
@@ -65,6 +91,16 @@ class Members extends Front_Controller {
 
     public function sign_in()
     {
+        if ( $this->login_check() === TRUE )
+        {
+            // Create the error.
+            $this->dove_core->set_error('logged_in');
+
+            // Set message & redirect.
+            $this->create_message('error', $this->dove_core->errors());
+            redirect ( site_url() );
+        }
+
         // Set the validation rules.
         $this->form_validation->set_rules($this->validation_rules['sign_in']);
 
@@ -94,18 +130,21 @@ class Members extends Front_Controller {
             // Perform login.
             $identity = $this->input->post('username');
             $password = $this->input->post('password');
-            $remember = $this->input->post('remember');
+            //$remember = $this->input->post('remember');
 
-            $login = $this->ion_auth->login($identity, $password, $remember);
+            $login = $this->dove_core->login($identity, $password);
 
             if($login == true)
             {
-                // Login successful.
-                redirect(site_url());
+                // Set message & redirect.
+                $this->create_message('success', $this->dove_core->messages());
+                redirect( site_url('forums') );
             }
             else
             {
-                redirect(site_url());
+                // Set error & redirect.
+                $this->create_message('error', $this->dove_core->errors());
+                redirect( site_url('forums/members/sign_in') );
             }
         }
     }
@@ -118,8 +157,13 @@ class Members extends Front_Controller {
     public function sign_out()
     {
         // Perform sign out.
-        $this->ion_auth->logout();
+        $logout = $this->dove_core->logout();
 
-        redirect(site_url());
+        if ( $logout === true )
+        {
+            // Set message & redirect.
+            $this->create_message('success', $this->dove_core->messages());
+            redirect( site_url() );
+        }
     }
 }

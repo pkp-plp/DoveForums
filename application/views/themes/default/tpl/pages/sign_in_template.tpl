@@ -28,11 +28,6 @@
                     <div class="pull-right">
                         {submit_button}
                     </div>
-                    <div class="checkbox">
-                        <label>
-                            {remember_me} Remember Me
-                        </label>
-                    </div>
                 </div>
             {form_close}
         </div>
