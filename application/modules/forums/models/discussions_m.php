@@ -78,15 +78,6 @@ class discussions_m extends CI_Model {
             }
         }
 
-        if ( isset($category_permalink) )
-        {
-            // Get category ID.
-            $category_id = $this->categories->get_id_by_category_permalink($category_permalink);
-
-            $this->db->where('category_id', $category_id);
-
-        }
-
         // Query.
         $query = $this->db->get($this->tables['discussions']);
 

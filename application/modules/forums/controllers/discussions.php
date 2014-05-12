@@ -104,8 +104,7 @@ class Discussions extends Front_Controller {
         $config['base_url'] = site_url('categories/'.$category_permalink.'');
         $config['total_rows'] = $this->discussions->count_category_discussions($category_permalink);
         $config['per_page'] = $this->config->item('discussions_per_page');
-        $config['uri_segment'] = '3';
-        $offset = $this->uri->segment('3');
+        $config['uri_segment'] = $this->uri->segment('3');
 
         $this->pagination->initialize($config);
 
@@ -113,7 +112,7 @@ class Discussions extends Front_Controller {
         $category_id = $this->categories->get_id_by_category_permalink($category_permalink);
 
         // Get the latest discussions.
-        $discussions = $this->discussions->get_category_discussions($category_id, $config['per_page'], $offset);
+        $discussions = $this->discussions->get_category_discussions($category_id, $this->config->item('discussions_per_page'), $this->uri->segment('3'));
 
         $has_discussions = ( is_array($discussions) ? TRUE : FALSE );
 
@@ -153,20 +152,27 @@ class Discussions extends Front_Controller {
                     $owned = 0;
                 }
 
+                // Build data array.
                 $data['discussions'][] = array(
-                    'gravatar' => img(array('src' => $this->gravatar->get_gravatar($discussion['created_by_email'], $this->config->item('gravatar_rating'), '45', $this->config->item('default_image')), 'class' => 'media-object img-thumbnail img-responsive')),
-                    'discussion_name' => anchor(site_url('discussion/'.$discussion['category_permalink'].'/'.$discussion['discussion_permalink'].''), $discussion['discussion_name']),
-                    'comments' => $discussion['comments'],
-                    'last_comment_by' => anchor(site_url('users/profile/'.$user->username.''), $user->username),
-                    'last_comment_date' => timespan($discussion['last_comment_date'], time()),
-                    'category' => anchor( site_url('categories/'.$discussion['category_permalink'].'/'), '<i class="fa fa-sitemap"></i> '.$discussion['category_name'].'', 'class="label label-default" title="'.sprintf($this->lang->line('label_category'), $discussion['category_name']).' - '.$discussion['category_description'].'"' ),
-                    'tag' => $data['tag'],
-                    'likes' => $discussion['likes'],
-                    'closed' => $closed,
-                    'announcement' => $announcement,
-                    'edit_button' => anchor(site_url('discussion/edit_discussion/'.$discussion['discussion_permalink']), '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"'),
-                    'delete_button' => anchor(site_url('discussion/delete_discussion/'.$discussion['discussion_permalink']), '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"'),
-                    'owned' => $owned,
+                    'discussion_info' => array(
+                        'discussion_name' => anchor( site_url('discussion/'.$discussion['category_permalink'].'/'.$discussion['discussion_permalink'].''), $discussion['discussion_name']),
+                        'comments' => $discussion['comments'],
+                        'last_comment_by' => anchor( site_url('users/profile/'.$user->username.''), $user->username),
+                        'last_comment_date' => timespan( $discussion['last_comment_date'], time() ),
+                        'category' => anchor( site_url('categories/'.$discussion['category_permalink'].'/'), '<i class="fa fa-sitemap"></i> '.$discussion['category_name'].'', 'class="label label-default" title="'.sprintf($this->lang->line('label_category'), $discussion['category_name']).' - '.$discussion['category_description'].'"' ),
+                        'tag' => $data['tag'],
+                        'likes' => $discussion['likes'],
+                        'closed' => $closed,
+                        'announcement' => $announcement,
+                        'owned' => $owned,
+                    ),
+                    'user_info' => array(
+                        'gravatar' => img( array( 'src' => $this->gravatar->get_gravatar( $discussion['created_by_email'], $this->config->item('gravatar_rating'), '45', $this->config->item('default_image') ), 'class' => 'media-object img-thumbnail img-responsive') ),
+                    ),
+                    'buttons' => array(
+                        'edit_button' => anchor( site_url( 'discussion/edit_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"' ),
+                        'delete_button' => anchor( site_url( 'discussion/delete_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"' ),
+                    ),
                 );
             }
         }

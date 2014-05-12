@@ -25,20 +25,19 @@
 
 class Forums extends Front_Controller {
 
-
     public function index()
     {
         // Set up the pagination.
         $config['base_url'] = site_url('forums/index');
         $config['total_rows'] = $this->discussions->count_all_discussions();
         $config['per_page'] = $this->config->item('discussions_per_page');
-        $config['uri_segment'] = '3';
+        $config['uri_segment'] = $this->uri->segment('3');
 
         // Initialize the pagination.
         $this->pagination->initialize($config);
 
         // Get discussions from the database.
-        $discussions = $this->discussions->get_discussions($config['per_page'], $config['uri_segment']);
+        $discussions = $this->discussions->get_discussions($this->config->item('discussions_per_page'), $config['uri_segment']);
 
         $has_discussions = ( is_array($discussions) ? TRUE : FALSE );
 
@@ -127,7 +126,7 @@ class Forums extends Front_Controller {
         // Set up the pagination.
         $config['base_url'] = site_url('discussions/'.$filter.'');
         $config['per_page'] = $this->config->item('discussions_per_page');
-        $config['uri_segment'] = '3';
+        $config['uri_segment'] = $this->uri->segment('3');
 
         if( isset($filter) )
         {
