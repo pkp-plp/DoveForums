@@ -104,13 +104,18 @@ class categories_m extends CI_Model {
                             ->limit(1)
                             ->get('categories');
 
-        if( $query->num_rows() > 0 )
-        {
-            return $query->row('id');
-        }
-        else
-        {
-            return FALSE;
-        }
+        // Result.
+        return ( $query->num_rows() > 0 ? $query->row('id') : NULL );
+    }
+
+    public function get_category_name_by_permalink($category_permalink)
+    {
+        // Query.
+        $query = $this->db->select('name')
+                            ->where('permalink', $category_permalink)
+                            ->limit(1)
+                            ->get('categories');
+        // Result.
+        return ( $query->num_rows() > 0 ? $query->row('name') : NULL );
     }
 }

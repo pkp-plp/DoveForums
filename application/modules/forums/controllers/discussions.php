@@ -111,6 +111,9 @@ class Discussions extends Front_Controller {
         // Get category ID.
         $category_id = $this->categories->get_id_by_category_permalink($category_permalink);
 
+        // Get category name.
+        $category_name = $this->categories->get_category_name_by_permalink($category_permalink);
+
         // Get the latest discussions.
         $discussions = $this->discussions->get_category_discussions($category_id, $config['per_page'], $config['uri_segment']);
 
@@ -188,7 +191,7 @@ class Discussions extends Front_Controller {
             'btn_unanswered_discussions' => anchor( site_url('discussions/unanswered_discussions'), sprintf( $this->lang->line('btn_unanswered_discussions'), $this->discussions->count_unanswered_discussions() ), 'class="btn btn-default btn-xs"'),
             'btn_all_discussions' => anchor( site_url(), sprintf( $this->lang->line('btn_all_discussions'), $this->discussions->count_all_discussions() ), 'class="btn btn-default btn-sx active"'),
             'btn_my_discussions' => anchor( site_url('discussions/my_discussions'), sprintf( $this->lang->line('btn_my_discussions'), $this->discussions->count_user_discussions($this->session->userdata('user_id')) ), 'class="btn btn-default btn-xs"'),
-            'page_title' => 'All Discussions',
+            'page_title' => $category_name,
         );
 
         $this->construct_template($page_data, 'forums_template', $page_data['page_title']);
