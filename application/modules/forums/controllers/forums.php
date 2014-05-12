@@ -90,12 +90,14 @@ class Forums extends Front_Controller {
                         'likes' => $discussion['likes'],
                         'closed' => $closed,
                         'announcement' => $announcement,
-                        'edit_button' => anchor( site_url( 'discussion/edit_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"' ),
-                        'delete_button' => anchor( site_url( 'discussion/delete_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"' ),
                         'owned' => $owned,
                     ),
                     'user_info' => array(
                         'gravatar' => img( array( 'src' => $this->gravatar->get_gravatar( $discussion['created_by_email'], $this->config->item('gravatar_rating'), '45', $this->config->item('default_image') ), 'class' => 'media-object img-thumbnail img-responsive') ),
+                    ),
+                    'buttons' => array(
+                        'edit_button' => anchor( site_url( 'discussion/edit_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"' ),
+                        'delete_button' => anchor( site_url( 'discussion/delete_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"' ),
                     ),
                 );
             }
@@ -193,12 +195,14 @@ class Forums extends Front_Controller {
                         'likes' => $discussion['likes'],
                         'closed' => $closed,
                         'announcement' => $announcement,
-                        'edit_button' => anchor( site_url( 'discussion/edit_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"' ),
-                        'delete_button' => anchor( site_url( 'discussion/delete_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"' ),
                         'owned' => $owned,
                     ),
                     'user_info' => array(
                         'gravatar' => img( array( 'src' => $this->gravatar->get_gravatar( $discussion['created_by_email'], $this->config->item('gravatar_rating'), '45', $this->config->item('default_image') ), 'class' => 'media-object img-thumbnail img-responsive') ),
+                    ),
+                    'buttons' => array(
+                        'edit_button' => anchor( site_url( 'discussion/edit_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"' ),
+                        'delete_button' => anchor( site_url( 'discussion/delete_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"' ),
                     ),
                 );
             }
