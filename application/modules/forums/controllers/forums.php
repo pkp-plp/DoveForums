@@ -25,6 +25,7 @@
 
 class Forums extends Front_Controller {
 
+
     public function index()
     {
         // Set up the pagination.
@@ -32,12 +33,12 @@ class Forums extends Front_Controller {
         $config['total_rows'] = $this->discussions->count_all_discussions();
         $config['per_page'] = $this->config->item('discussions_per_page');
         $config['uri_segment'] = '3';
-        $offset = $this->uri->segment('3');
 
+        // Initialize the pagination.
         $this->pagination->initialize($config);
 
-        // Get the latest discussions.
-        $discussions = $this->discussions->get_discussions($config['per_page'], $offset);
+        // Get discussions from the database.
+        $discussions = $this->discussions->get_discussions($config['per_page'], $config['uri_segment']);
 
         $has_discussions = ( is_array($discussions) ? TRUE : FALSE );
 
@@ -52,13 +53,12 @@ class Forums extends Front_Controller {
                 $user = $this->dove_core->user($discussion['last_comment_by']);
 
                 // See if the discussion is a sticky.
-                $announcement = ( $discussion['announcement'] == 1
-                    ? $this->lang->line('text_announcement')
-                    : '' );
+                $announcement = ( $discussion['announcement'] == 1 ? $this->lang->line('text_announcement') : '' );
 
                 // See if the discussion is closed.
                 $closed = ( $discussion['closed'] == 1 ? $this->lang->line('text_closed') : '' );
 
+                // Is the discussion been marked as answered.
                 if ( $discussion['answered'] == 0 )
                 {
                     $data['unanswered']++;
@@ -67,6 +67,7 @@ class Forums extends Front_Controller {
                     $data['tag'] = '<span class="label label-success" title="'.$this->lang->line('title_answered').'">'.$this->lang->line('label_answered').'</span>';
                 }
 
+                // Is the logged in user the creator of the discussion.
                 if ( $discussion['created_by'] == $this->session->userdata('user_id') )
                 {
                     $data['my_discussions']++;
@@ -77,20 +78,25 @@ class Forums extends Front_Controller {
                     $owned = 0;
                 }
 
+                // Build data array.
                 $data['discussions'][] = array(
-                    'gravatar' => img(array('src' => $this->gravatar->get_gravatar($discussion['created_by_email'], $this->config->item('gravatar_rating'), '45', $this->config->item('default_image')), 'class' => 'media-object img-thumbnail img-responsive')),
-                    'discussion_name' => anchor(site_url('discussion/'.$discussion['category_permalink'].'/'.$discussion['discussion_permalink'].''), $discussion['discussion_name']),
-                    'comments' => $discussion['comments'],
-                    'last_comment_by' => anchor(site_url('users/profile/'.$user->username.''), $user->username),
-                    'last_comment_date' => timespan($discussion['last_comment_date'], time()),
-                    'category' => anchor( site_url('categories/'.$discussion['category_permalink'].'/'), '<i class="fa fa-sitemap"></i> '.$discussion['category_name'].'', 'class="label label-default" title="'.sprintf($this->lang->line('label_category'), $discussion['category_name']).' - '.$discussion['category_description'].'"' ),
-                    'tag' => $data['tag'],
-                    'likes' => $discussion['likes'],
-                    'closed' => $closed,
-                    'announcement' => $announcement,
-                    'edit_button' => anchor(site_url('discussion/edit_discussion/'.$discussion['discussion_permalink']), '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"'),
-                    'delete_button' => anchor(site_url('discussion/delete_discussion/'.$discussion['discussion_permalink']), '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"'),
-                    'owned' => $owned,
+                    'discussion_info' => array(
+                        'discussion_name' => anchor( site_url('discussion/'.$discussion['category_permalink'].'/'.$discussion['discussion_permalink'].''), $discussion['discussion_name']),
+                        'comments' => $discussion['comments'],
+                        'last_comment_by' => anchor( site_url('users/profile/'.$user->username.''), $user->username),
+                        'last_comment_date' => timespan( $discussion['last_comment_date'], time() ),
+                        'category' => anchor( site_url('categories/'.$discussion['category_permalink'].'/'), '<i class="fa fa-sitemap"></i> '.$discussion['category_name'].'', 'class="label label-default" title="'.sprintf($this->lang->line('label_category'), $discussion['category_name']).' - '.$discussion['category_description'].'"' ),
+                        'tag' => $data['tag'],
+                        'likes' => $discussion['likes'],
+                        'closed' => $closed,
+                        'announcement' => $announcement,
+                        'edit_button' => anchor( site_url( 'discussion/edit_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"' ),
+                        'delete_button' => anchor( site_url( 'discussion/delete_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"' ),
+                        'owned' => $owned,
+                    ),
+                    'user_info' => array(
+                        'gravatar' => img( array( 'src' => $this->gravatar->get_gravatar( $discussion['created_by_email'], $this->config->item('gravatar_rating'), '45', $this->config->item('default_image') ), 'class' => 'media-object img-thumbnail img-responsive') ),
+                    ),
                 );
             }
         }
@@ -112,8 +118,6 @@ class Forums extends Front_Controller {
         );
 
         $this->construct_template($page_data, 'forums_template', $page_data['page_title']);
-
-        $this->output->enable_profiler(false);
     }
 
     public function filtered($filter)
@@ -122,7 +126,6 @@ class Forums extends Front_Controller {
         $config['base_url'] = site_url('discussions/'.$filter.'');
         $config['per_page'] = $this->config->item('discussions_per_page');
         $config['uri_segment'] = '3';
-        $offset = $this->uri->segment('3');
 
         if( isset($filter) )
         {
@@ -141,7 +144,7 @@ class Forums extends Front_Controller {
         $this->pagination->initialize($config);
 
         // Get the latest discussions.
-        $discussions = $this->discussions->get_discussions($config['per_page'], $offset, $filter);
+        $discussions = $this->discussions->get_discussions($config['per_page'], $config['uri_segment'], $filter);
 
         $has_discussions = ( is_array($discussions) ? TRUE : FALSE );
 
@@ -180,19 +183,23 @@ class Forums extends Front_Controller {
                 }
 
                 $data['discussions'][] = array(
-                    'gravatar' => img(array('src' => $this->gravatar->get_gravatar($discussion['created_by_email'], $this->config->item('gravatar_rating'), '45', $this->config->item('default_image')), 'class' => 'media-object img-thumbnail img-responsive')),
-                    'discussion_name' => anchor(site_url('discussion/'.$discussion['category_permalink'].'/'.$discussion['discussion_permalink'].''), $discussion['discussion_name']),
-                    'comments' => $discussion['comments'],
-                    'last_comment_by' => anchor(site_url('users/profile/'.$user->username.''), $user->username),
-                    'last_comment_date' => timespan($discussion['last_comment_date'], time()),
-                    'category' => anchor( site_url('categories/'.$discussion['category_permalink'].'/'), '<i class="fa fa-sitemap"></i> '.$discussion['category_name'].'', 'class="label label-default" title="'.sprintf($this->lang->line('label_category'), $discussion['category_name']).'"' ),
-                    'tag' => $data['tag'],
-                    'likes' => $discussion['likes'],
-                    'closed' => $closed,
-                    'announcement' => $announcement,
-                    'edit_button' => anchor(site_url('discussion/edit_discussion/'.$discussion['discussion_permalink']), '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"'),
-                    'delete_button' => anchor(site_url('discussion/delete_discussion/'.$discussion['discussion_permalink']), '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"'),
-                    'owned' => $owned,
+                    'discussion_info' => array(
+                        'discussion_name' => anchor( site_url('discussion/'.$discussion['category_permalink'].'/'.$discussion['discussion_permalink'].''), $discussion['discussion_name']),
+                        'comments' => $discussion['comments'],
+                        'last_comment_by' => anchor( site_url('users/profile/'.$user->username.''), $user->username),
+                        'last_comment_date' => timespan( $discussion['last_comment_date'], time() ),
+                        'category' => anchor( site_url('categories/'.$discussion['category_permalink'].'/'), '<i class="fa fa-sitemap"></i> '.$discussion['category_name'].'', 'class="label label-default" title="'.sprintf($this->lang->line('label_category'), $discussion['category_name']).' - '.$discussion['category_description'].'"' ),
+                        'tag' => $data['tag'],
+                        'likes' => $discussion['likes'],
+                        'closed' => $closed,
+                        'announcement' => $announcement,
+                        'edit_button' => anchor( site_url( 'discussion/edit_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"' ),
+                        'delete_button' => anchor( site_url( 'discussion/delete_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"' ),
+                        'owned' => $owned,
+                    ),
+                    'user_info' => array(
+                        'gravatar' => img( array( 'src' => $this->gravatar->get_gravatar( $discussion['created_by_email'], $this->config->item('gravatar_rating'), '45', $this->config->item('default_image') ), 'class' => 'media-object img-thumbnail img-responsive') ),
+                    ),
                 );
             }
         }
@@ -214,7 +221,5 @@ class Forums extends Front_Controller {
         );
 
         $this->construct_template($page_data, 'forums_template', $data['page_title']);
-
-        $this->output->enable_profiler(TRUE);
     }
 }

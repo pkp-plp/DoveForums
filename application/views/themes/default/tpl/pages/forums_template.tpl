@@ -32,34 +32,34 @@
                         <div class="col-md-10">
                         <!-- END -->
                             <div class="pull-left">
-                                {gravatar}
+                                {user_info->gravatar}
                             </div>
-                            <p class="media-heading">&nbsp;&nbsp;<strong>{discussion_name}</strong></p>
-                            <p class="text-muted">&nbsp;&nbsp;{category}&nbsp;&nbsp;&nbsp;{tag}&nbsp;&nbsp;&nbsp;{announcement}&nbsp;&nbsp;&nbsp;{closed}&nbsp;&nbsp;&nbsp;<small><i class="fa fa-calendar"></i> {last_comment_date}&nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i> {last_comment_by}</small></p>
+                            <p class="media-heading">&nbsp;&nbsp;<strong>{discussion_info->discussion_name}</strong></p>
+                            <p class="text-muted">&nbsp;&nbsp;{discussion_info->category}&nbsp;&nbsp;&nbsp;{discussion_info->tag}&nbsp;&nbsp;&nbsp;{discussion_info->announcement}&nbsp;&nbsp;&nbsp;{discussion_info->closed}&nbsp;&nbsp;&nbsp;<small><i class="fa fa-calendar"></i> {discussion_info->last_comment_date}&nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i> {discussion_info->last_comment_by}</small></p>
                         </div> <!-- col-md-6 -->
                         <div class="col-md-1">
                             <div class="btn btn-info btn-sm">
                                 <i class="fa fa-thumbs-up fa-2x text-center"></i>
                                 <br>
-                                <span>{likes}</span>
+                                <span>{discussion_info->likes}</span>
                             </div>
                         </div> <!-- col-md-2 -->
                         <div class="col-md-1">
                             <div class="btn btn-info btn-sm">
                                 <i class="fa fa-comment fa-2x"></i>
                                 <br>
-                                <span>{comments}</span>
+                                <span>{discussion_info->comments}</span>
                             </div>
                         </div>
                         <!-- IF {auth->logged_in} AND {owned} == 1 -->
                         <div class="col-md-1">
                             <div class="btn-group-vertical">
                                 <!-- IF {permissions->edit_discussions->value} == 1 -->
-                                {edit_button}
+                                {discussion_info->edit_button}
                                 <!-- END -->
 
                                 <!-- IF {permissions->delete_discussions->value} == 1 -->
-                                {delete_button}
+                                {discussion_info->delete_button}
                                 <!-- END -->
                             </div>
                         </div>
