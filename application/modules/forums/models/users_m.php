@@ -27,22 +27,23 @@ class users_m extends CI_Model {
 
     public function count_members()
     {
-        // Select
-        $this->db->select('*');
-
         // Query.
-        $query = $this->db->get('users');
+        $query = $this->db->select('*')
+                            ->get('users');
 
         // Result.
-        return $query->num_rows();
+        return ( $query->num_rows() > 0 ? $query->num_rows() : 0 );
     }
 
     public function get_sidebar_members()
     {
-        // Select.
-        $this->db->select('
-            email,
-            username
-        ');
+        // Query.
+        $query = $this->db->select('email, username')
+                            ->order_by('id', 'RANDOM')
+                            ->limit(4)
+                            ->get($this->tables['users']);
+
+        // Result.
+        return ( $query->num_rows() > 0 ? $query->result_array() : NULL );
     }
 }

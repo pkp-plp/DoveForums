@@ -37,31 +37,11 @@
                 <div class="panel-body">
                     <!-- Member Row 1 -->
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <img src="{T_Folder}/img/gallery/pic1.png" class="img-rounded img-responsive">
-                        </div>
-                        <div class="col-ld-4 col-md-4 col-sm-4 col-xs-4">
-                            <img src="{T_Folder}/img/gallery/pic2.png" class="img-rounded img-responsive">
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <img src="{T_Folder}/img/gallery/pic3.png" class="img-rounded img-responsive">
-                        </div>
-                    </div>
-                    <br/>
-                    <!-- Member Row 2 -->
-                    <div class="row">
+                        <!-- BEGIN members -->
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                            <img src="{T_Folder}/img/gallery/pic5.png" class="img-rounded img-responsive">
+                            {member}
                         </div>
-                        <div class="col-ld-3 col-md-3 col-sm-3 col-xs-3">
-                            <img src="{T_Folder}/img/gallery/pic6.png" class="img-rounded img-responsive">
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                            <img src="{T_Folder}/img/gallery/pic7.png" class="img-rounded img-responsive">
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                            <img src="{T_Folder}/img/gallery/pic8.png" class="img-rounded img-responsive">
-                        </div>
+                        <!-- END members -->
                     </div>
                     <br/>
                     <div class="text-center">

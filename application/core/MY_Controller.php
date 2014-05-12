@@ -53,7 +53,6 @@ class Front_Controller extends MY_Controller{
     public $sidebar_display;
     public $messages;
     public $permissions;
-    public $filter;
 
     public function __construct()
     {
@@ -85,9 +84,6 @@ class Front_Controller extends MY_Controller{
             'logged_in' => $this->dove_core->logged_in(),
             'is_admin' => $this->dove_core->is_admin(),
         );
-
-        // Initialize the filter.
-        $this->filter = $this->session->userdata('filter');
 
         $this->permissions = $this->dove_core->get_permissions($this->session->userdata('group_id'));
 
@@ -160,10 +156,21 @@ class Front_Controller extends MY_Controller{
             }
         }
 
+        // Get sidebar members.
+        $members = $this->users->get_sidebar_members();
+
+        foreach ( $members as $row )
+        {
+            $data['members'][] = array(
+                'member' => img( array( 'src' => $this->gravatar->get_gravatar( $row['email'], $this->config->item('gravatar_rating'), '45', $this->config->item('default_image') ), 'class' => 'img-rounded img-responsive', 'title' => $row['username']) ),
+            );
+        }
+
         // Create the data for the right sidebar.
         $right_sidebar_data = array(
             'categories' => $data['categories'],
             'member_count' => $this->users->count_members(),
+            'members' => $data['members'],
             'new_discussion_button' => anchor( site_url('discussion/new_discussion'), $this->lang->line('btn_new_discussion'), 'class="btn btn-success btn-icon col-md-12"' ),
         );
 
