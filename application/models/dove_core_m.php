@@ -1,27 +1,41 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ *
+ * NOTICE OF LICENSE
+ *
+ * Licensed under the Open Software License version 3.0
+ *
+ * This source file is subject to the Open Software License (OSL 3.0) that is
+ * bundled with this package in the files license.txt / license.rst. It is
+ * also available through the world wide web at this URL:
+ * http://opensource.org/licenses/OSL-3.0
+ * If you did not receive a copy of the license and are unable to obtain it
+ * through the world wide web, please send an email to
+ * licensing@ellislab.com so we can send you a copy immediately.
+ *
+ * @package Dove Forums
+ * @copyright Copyright (c) 2012 - Christopher Baines
+ * @license http://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
+ * @link http://www.doveforums.com
+ * @since Version 2.0.0
+ * @author Christopher Baines
+ *
+ */
+
 class Dove_core_m extends CI_Model
 {
     public $tables = array();
-
     public $activation_code;
-
     public $forgotten_password_key;
-
     public $new_password;
-
     public $identity;
-
     protected $_dove_hooks;
-
     protected $response = NULL;
-
     protected $messages;
     protected $errors;
-
     protected $message_start_delimiter;
     protected $message_end_delimiter;
-
     protected $error_start_delimiter;
     protected $error_end_delimiter;
 
@@ -144,9 +158,76 @@ class Dove_core_m extends CI_Model
         return TRUE;
     }
 
-    public function register()
+    public function register($username, $password, $email, $group=NULL)
     {
+        /*
+        if ( $this->identity_column == 'email' && $this->email_check($email) )
+        {
+            $this->set_error('account_creation_duplicate_email');
+            return FALSE;
+        }
+        elseif ( $this->identity_column == 'username' && $this->username_check($username) )
+        {
+            $this->set_error('account_creation_duplicate_username');
+            return FALSE;
+        }
+        */
 
+        // Password.
+        $db_password = $this->bcrypt->hash_password($password);
+
+        // Build data.
+        $data = array(
+            'username' => $username,
+            'password' => $db_password,
+            'email' => $email,
+            'ip_address' => $this->input->ip_address(),
+            'created_on' => time(),
+            'last_login' => time(),
+            'active' => 1,
+        );
+
+        // Insert.
+        $this->db->insert($this->tables['users'], $data);
+
+        if( $this->db->affected_rows() > 0 )
+        {
+            $user_id = $this->db->insert_id();
+
+            // See if a group is set, if not add to default.
+            if ( isset($group) )
+            {
+                if( $this->add_to_group($group, $user_id) == TRUE )
+                {
+                    $this->set_message('account_creation_successful');
+                    return TRUE;
+                }
+                else
+                {
+                    $this->set_error('account_creation_failed');
+                    return FALSE;
+                }
+            }
+            else
+            {
+                // Add to the default group.
+                if ( $this->add_to_group($this->config->item('default_group', 'dove_core'), $user_id) == TRUE )
+                {
+                    $this->set_message('account_creation_successful');
+                    return TRUE;
+                }
+                else
+                {
+                    $this->set_error('account_creation_failed');
+                    return FALSE;
+                }
+            }
+        }
+        else
+        {
+            $this->set_error('account_creation_failed');
+            return FALSE;
+        }
     }
 
     public function hash_password_db($id, $password)
@@ -691,6 +772,38 @@ class Dove_core_m extends CI_Model
             if ( $this->update(array('xp' => $new_xp), array('id' => $user_id), $this->tables['users']) === TRUE )
             {
                 $this->set_message('xp_added');
+                return TRUE;
+            }
+            else
+            {
+                return FALSE;
+            }
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
+    public function add_to_group($group, $user_id)
+    {
+        // Get the group ID from the database.
+        $query = $this->db->select('id')
+                            ->where('name', strtolower($group))
+                            ->limit(1)
+                            ->get($this->tables['groups']);
+
+        // Result
+        if ( $query->num_rows() > 0 )
+        {
+            $data = array(
+                'group_id' => $query->row('id'),
+            );
+
+            $this->db->where('id', $user_id)->update($this->tables['users'], $data);
+
+            if ( $this->db->affected_rows() > 0 )
+            {
                 return TRUE;
             }
             else

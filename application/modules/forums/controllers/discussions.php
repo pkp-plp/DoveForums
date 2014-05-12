@@ -25,6 +25,79 @@
 
 class Discussions extends Front_Controller {
 
+    private $validation_rules = array(
+        'new_discussion' => array(
+            //0
+            array(
+                'field' => 'discussion_name',
+                'rules' => 'required',
+                'label' => 'lang: rules_name',
+            ),
+            //1
+            array(
+                'field' => 'comment',
+                'rules' => 'required',
+                'label' => 'lang: rules_comment',
+            ),
+            //2
+            array(
+                'field' => 'category',
+                'rules' => 'required',
+                'label' => 'lang:rules_category',
+            ),
+        ),
+    );
+
+    private $form_fields = array(
+        'new_discussion' => array(
+            //0
+            array(
+                'name' => 'discussion_name',
+                'id' => 'discussion_name',
+                'placeholder' => 'Enter discussion name.',
+                'class' => 'form-control',
+                'type' => 'text'
+            ),
+            //1
+            array(
+                'name' => 'comment',
+                'id' => 'comment',
+                'placeholder' => 'Enter comment.',
+                'class' => 'form-control',
+                'type' => 'textarea',
+            ),
+            //2
+            array(
+                'id' => 'category',
+                'class' => 'form-control',
+            ),
+            //3
+            array(
+                'name' => 'tags',
+                'id' => 'tags',
+                'class' => 'form-control',
+                'type' => 'text',
+                'data-role' => 'tagsinput',
+                'placeholder' => 'Add Tag & Press Enter.',
+            )
+        ),
+    );
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        // Load in the slug library.
+        $config = array(
+            'field' => 'permalink',
+            'title' => 'name',
+            'table' => 'discussions',
+            'id' => 'discussion_id',
+        );
+
+        $this->load->library('slug', $config);
+    }
+
     public function index($category_permalink)
     {
         // Set up the pagination.
@@ -158,5 +231,140 @@ class Discussions extends Front_Controller {
         );
 
         $this->construct_template($page_data, 'view_template', $this->lang->line('page_discussions') . ' - ' . $page_data['discussion_name']);
+    }
+
+    public function new_discussion()
+    {
+        // Login check.
+        $this->login_check();
+
+        // Check permissions.
+        $this->permission_check('create_discussions');
+
+        // Set the validation rules.
+        $this->form_validation->set_rules($this->validation_rules['new_discussion']);
+
+        // See if the form has been run.
+        if($this->form_validation->run() === FALSE)
+        {
+            // Get categories from the database.
+            $categories = $this->categories->get_categories();
+
+            if($categories)
+            {
+                foreach($categories as $cat)
+                {
+                    $category_options[$cat['id']] = $cat['name'];
+                }
+            }
+
+            $page_data = array(
+                // Form Tags
+                'form_open' => form_open(site_url('discussion/new_discussion'), array('id' => 'new_discussion')),
+                'form_close' => form_close(),
+                // Category Dropdown.
+                'category_label' => form_label($this->lang->line('label_category'), $this->form_fields['new_discussion']['2']['id']),
+                'category_field' => form_dropdown('category', $category_options, '0', 'class="selectpicker form-control show-tick show-menu-arrow" data-style="btn-default"'),
+                // Discussion Name
+                'discussion_name_label' => form_label($this->lang->line('label_discussion_name'), $this->form_fields['new_discussion']['0']['id']),
+                'discussion_name_field' => form_input($this->form_fields['new_discussion']['0']),
+                // Comment
+                'comment_label' => form_label($this->lang->line('label_comment'), $this->form_fields['new_discussion']['1']['id']),
+                'comment_field' => form_textarea($this->form_fields['new_discussion']['1']),
+                // Buttons
+                'clear_button' => form_reset('reset', 'Clear', 'class="btn btn-danger btn-sm"'),
+                'submit_button' => form_submit('submit', 'Create Discussion', 'class="btn btn-success btn-sm"'),
+            );
+
+            $this->construct_template($page_data, 'new_discussion_template', $this->lang->line('page_new_discussion'));
+        }
+        else
+        {
+            $discussion_data = array(
+                'category_id' => $this->input->post('category'),
+                'name' => $this->input->post('discussion_name'),
+                'created_by' => $this->session->userdata('user_id'),
+                'created_date' => now(),
+                'created_ip' => $this->input->ip_address(),
+                'last_comment_by' => $this->session->userdata('user_id'),
+                'last_comment_date' => now(),
+                'last_comment_ip' => $this->input->ip_address(),
+                'permalink' => $this->slug->create_uri(array('permalink' => $this->input->post('discussion_name'))),
+                'likes' => '0',
+                'announcement' => '0',
+                'closed' => '0',
+            );
+
+            $comment_data = array(
+                'comment' => $this->input->post('comment'),
+                'created_by' => $this->session->userdata('user_id'),
+                'created_date' => now(),
+                'created_ip' => $this->input->ip_address(),
+            );
+
+            $insert_discussion = $this->discussions->add_discussion($discussion_data, $comment_data);
+
+            if ($insert_discussion === TRUE)
+            {
+                // Award XP.
+                $this->dove_core->add_xp('1', $this->session->userdata('user_id'));
+                $this->create_message('success', $this->dove_core->messages());
+                redirect ( site_url('discussion/'.$this->categories->get_category_permalink_by_id($discussion_data['category_id']).'/'.$discussion_data['permalink'].'') );
+            }
+            else
+            {
+                $this->create_message('error', $this->dove_core->errors());
+                redirect ( site_url() );
+            }
+        }
+    }
+
+    public function edit_discussion($discussion_permalink)
+    {
+        // Login check.
+        $this->login_check();
+
+        // Permission check.
+        $this->permission_check('edit_discussions');
+    }
+
+    public function delete_discussion($discussion_permalink)
+    {
+        // Login check.
+        $this->login_check();
+
+        // Permission check.
+        $this->permission_check('delete_discussions');
+
+        if ( !isset($discussion_permalink) )
+        {
+            $this->create_message('error', 'No permalink supplied.');
+            redirect(site_url('forums'));
+        }
+
+        $discussion_id = $this->discussions->get_id_from_permalink($discussion_permalink);
+
+        if ( isset($discussion_id) && isset($discussion_permalink) )
+        {
+            $delete = $this->discussions->delete($discussion_id);
+
+            if ( $delete === TRUE )
+            {
+                $this->create_message('success', $this->dove_core->messages());
+                redirect ( site_url() );
+            }
+            else
+            {
+                $this->create_message('error', $this->dove_core->errors());
+                redirect ( site_url() );
+            }
+        }
+        else
+        {
+            $this->dove_core->set_error('general_error');
+
+            $this->create_message('error', $this->dove_core->errors());
+            redirect ( site_url() );
+        }
     }
 }

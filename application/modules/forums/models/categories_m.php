@@ -88,7 +88,7 @@ class categories_m extends CI_Model {
 
         if ( $query->num_rows() > 0 )
         {
-            return $query->row('category_permalink');
+            return $query->row('permalink');
         }
         else
         {
