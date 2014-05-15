@@ -39,13 +39,12 @@ class Forums extends Front_Controller {
         // Get discussions from the database.
         $discussions = $this->discussions->get_discussions($config['per_page'], $config['uri_segment']);
 
-        $has_discussions = ( is_array($discussions) ? TRUE : FALSE );
-
         // Initialize some variables.
         $data['unanswered'] = (int) 0;
         $data['my_discussions'] = (int) 0;
+        $data['has_discussions'] = ( is_array($discussions) ? (int) 1 : (int) 0 );
 
-        if (($discussions))
+        if ( is_array($discussions))
         {
             foreach($discussions as $row)
             {
@@ -111,10 +110,10 @@ class Forums extends Front_Controller {
         $page_data = array(
             'discussions' => element('discussions', $data),
             'pagination' => $this->pagination->create_links(),
-            'has_discussions' => $has_discussions,
-            'btn_unanswered_discussions' => anchor( site_url('discussions/unanswered_discussions'), sprintf($this->lang->line('btn_unanswered_discussions'), $this->discussions->count_unanswered_discussions()), 'class="btn btn-default btn-xs"'),
-            'btn_all_discussions' => anchor( site_url(), sprintf($this->lang->line('btn_all_discussions'), $this->discussions->count_all_discussions()), 'class="btn btn-default btn-sx active"'),
-            'btn_my_discussions' => anchor( site_url('discussions/my_discussions'), sprintf($this->lang->line('btn_my_discussions'), $this->discussions->count_user_discussions( (int) $this->session->userdata('user_id'))), 'class="btn btn-default btn-xs"'),
+            'has_discussions' => element('has_discussions', $data),
+            'btn_unanswered_discussions' => button( 'discussions/unanswered_discussions', sprintf($this->lang->line('btn_unanswered_discussions'), $this->discussions->count_unanswered_discussions()), 'class="btn btn-default btn-xs"'),
+            'btn_all_discussions' => button( NULL, sprintf($this->lang->line('btn_all_discussions'), count ($discussions) ), 'class="btn btn-default btn-sx active"'),
+            'btn_my_discussions' => button( 'discussions/my_discussions', sprintf($this->lang->line('btn_my_discussions'), $this->discussions->count_user_discussions( (int) $this->session->userdata('user_id'))), 'class="btn btn-default btn-xs"'),
             'page_title' => 'All Discussions',
         );
 
@@ -147,13 +146,12 @@ class Forums extends Front_Controller {
         // Get the latest discussions.
         $discussions = $this->discussions->get_discussions($config['per_page'], $config['uri_segment'], $filter);
 
-        $has_discussions = ( is_array($discussions) ? TRUE : FALSE );
-
         // Initialize some variables.
         $data['unanswered'] = (int) 0;
         $data['my_discussions'] = (int) 0;
+        $data['has_discussions'] = ( is_array($discussions) ? (int) 1 : (int) 0 );
 
-        if ( ($discussions) )
+        if ( is_array($discussions) )
         {
             foreach($discussions as $row)
             {
@@ -169,7 +167,9 @@ class Forums extends Front_Controller {
                 {
                     $data['unanswered']++;
                     $data['tag'] = '<span class="label label-info" title="'.$this->lang->line('title_unanswered').'">'.$this->lang->line('label_unanswered').'</span>';
-                } else {
+                }
+                else
+                {
                     $data['tag'] = '<span class="label label-success" title="'.$this->lang->line('title_answered').'">'.$this->lang->line('label_answered').'</span>';
                 }
 
@@ -200,8 +200,8 @@ class Forums extends Front_Controller {
                         'gravatar' => img( array( 'src' => $this->gravatar->get_gravatar( $row->created_by_email, $this->config->item('gravatar_rating'), '45', $this->config->item('default_image') ), 'class' => 'media-object img-thumbnail img-responsive') ),
                     ),
                     'buttons' => array(
-                        'btn_edit' => anchor( site_url( 'discussion/edit_discussion/'.$row->discussion_permalink ), '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"' ),
-                        'btn_delete' => anchor( site_url( 'discussion/delete_discussion/'.$row->discussion_permalink ), '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"' ),
+                        'btn_edit' => button( 'discussion/edit_discussion/'.$row->discussion_permalink, '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"' ),
+                        'btn_delete' => button( 'discussion/delete_discussion/'.$row->discussion_permalink, '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"' ),
                     ),
                 );
             }
@@ -216,10 +216,10 @@ class Forums extends Front_Controller {
         $page_data = array(
             'discussions' => element('discussions', $data),
             'pagination' => $this->pagination->create_links(),
-            'has_discussions' => $has_discussions,
-            'btn_unanswered_discussions' => anchor( site_url('discussions/unanswered_discussions'), sprintf($this->lang->line('btn_unanswered_discussions'), $this->discussions->count_unanswered_discussions()), 'class="btn btn-default btn-xs"'),
-            'btn_all_discussions' => anchor( site_url(), sprintf($this->lang->line('btn_all_discussions'), $this->discussions->count_all_discussions()), 'class="btn btn-default btn-sx active"'),
-            'btn_my_discussions' => anchor( site_url('discussions/my_discussions'), sprintf($this->lang->line('btn_my_discussions'), $this->discussions->count_user_discussions( (int) $this->session->userdata('user_id') )), 'class="btn btn-default btn-xs"'),
+            'has_discussions' => element('has_discussions', $data),
+            'btn_unanswered_discussions' => button( 'discussions/unanswered_discussions', sprintf($this->lang->line('btn_unanswered_discussions'), $this->discussions->count_unanswered_discussions()), 'class="btn btn-default btn-xs"'),
+            'btn_all_discussions' => button( NULL, sprintf($this->lang->line('btn_all_discussions'), count ($discussions) ), 'class="btn btn-default btn-sx active"'),
+            'btn_my_discussions' => button( 'discussions/my_discussions', sprintf($this->lang->line('btn_my_discussions'), $this->discussions->count_user_discussions( (int) $this->session->userdata('user_id') )), 'class="btn btn-default btn-xs"'),
             'page_title' => $data['page_title'],
         );
 

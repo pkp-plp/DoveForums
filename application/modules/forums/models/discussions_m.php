@@ -277,6 +277,6 @@ class discussions_m extends CI_Model {
                             ->get('discussions');
 
         // Result.
-        return ( $query->num_rows() > 0 ? $query->result() : false );
+        return ( $query->num_rows() > 0 ? $query->row('name') : false );
     }
 }

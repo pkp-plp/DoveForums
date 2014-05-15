@@ -24,6 +24,7 @@
         <ul class="media-list">
             <hr />
         <!-- BEGIN discussions -->
+            <!-- IF {has_discussions} == 1 -->
             <li class="media">
                     <div class="media-body">
                         <!-- IF {auth->logged_in} -->
@@ -66,6 +67,11 @@
                         <!-- END -->
                     </div>
             </li>
+            <!-- ELSE -->
+            <li class="media">
+                <p>{no_discussions}</p>
+            </li>
+            <!-- END -->
             <hr />
         <!-- END discussions -->
             <div class="text-center" id="pagination">

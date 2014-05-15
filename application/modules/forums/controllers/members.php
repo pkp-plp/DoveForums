@@ -138,8 +138,8 @@ class Members extends Front_Controller {
         else
         {
             // Perform login.
-            $identity = $this->input->post('username');
-            $password = $this->input->post('password');
+            $identity = (string) $this->input->post('username');
+            $password = (string) $this->input->post('password');
             //$remember = $this->input->post('remember');
 
             $login = $this->dove_core->login($identity, $password);

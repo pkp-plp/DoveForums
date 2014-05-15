@@ -27,6 +27,11 @@ class comments_m extends CI_Model {
 
     public function get_comments($discussion_id)
     {
+        if(!is_int($discussion_id))
+        {
+            return NULL;
+        }
+
         // Select.
         $query = $this->db->select('comments.comment_id, comments.comment, comments.created_by, comments.created_date,
             comments.created_ip, comments.discussion_id, users.id as user_id, users.username as created_by_username,
@@ -42,17 +47,27 @@ class comments_m extends CI_Model {
 
     public function count_discussion_comments($discussion_id)
     {
+        if(!is_int($discussion_id))
+        {
+            return NULL;
+        }
+
         // Query
         $query = $this->db->select('*')
                             ->where('discussion_id', $discussion_id)
                             ->get($this->tables['comments']);
 
         // Result.
-        return ( $query->num_rows() > 0 ? $query->num_rows() : 0 );
+        return ( $query->num_rows() > 0 ? $query->num_rows() : (int) 0 );
     }
 
     public function add_comment($comment_data)
     {
+        if(!is_array($comment_data))
+        {
+            return NULL;
+        }
+
         // Insert
         $this->db->insert('comments', $comment_data);
 
@@ -61,6 +76,11 @@ class comments_m extends CI_Model {
 
     public function delete_comments($discussion_id)
     {
+        if(!is_int($discussion_id))
+        {
+            return NULL;
+        }
+
         // Where.
         $this->db->where('discussion_id', $discussion_id);
 

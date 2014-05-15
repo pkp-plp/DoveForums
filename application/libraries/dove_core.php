@@ -64,7 +64,7 @@ class Dove_core
         $this->trigger_events('pre_login');
 
         // Check supplied details.
-        if (empty($identity) || empty($password))
+        if (!is_string($identity) || !is_string($password))
         {
             $this->set_error('login_unsuccessful');
             return FALSE;

@@ -117,11 +117,10 @@ class Discussions extends Front_Controller {
         // Get the latest discussions.
         $discussions = $this->discussions->get_category_discussions($category_id, $config['per_page'], $config['uri_segment']);
 
-        $has_discussions = ( is_array($discussions) ? TRUE : FALSE );
-
         // Initialize some variables.
         $data['unanswered'] = (int) 0;
         $data['my_discussions'] = (int) 0;
+        $data['has_discussions'] = ( is_array($discussions) ? (int) 1 : (int) 0 );
 
         if (($discussions))
         {
@@ -139,7 +138,9 @@ class Discussions extends Front_Controller {
                 {
                     $data['unanswered']++;
                     $data['tag'] = '<span class="label label-info" title="'.$this->lang->line('title_unanswered').'">'.$this->lang->line('label_unanswered').'</span>';
-                } else {
+                }
+                else
+                {
                     $data['tag'] = '<span class="label label-success" title="'.$this->lang->line('title_answered').'">'.$this->lang->line('label_answered').'</span>';
                 }
 
@@ -187,9 +188,9 @@ class Discussions extends Front_Controller {
         $page_data = array(
             'discussions' => element('discussions', $data),
             'pagination' => $this->pagination->create_links(),
-            'has_discussions' => $has_discussions,
-            'btn_unanswered_discussions' => anchor( site_url('discussions/unanswered_discussions'), sprintf( $this->lang->line('btn_unanswered_discussions'), $this->discussions->count_unanswered_discussions() ), 'class="btn btn-default btn-xs"'),
-            'btn_all_discussions' => button ( NULl, sprintf( $this->lang->line('btn_all_discussions'), $this->discussions->count_all_discussions() ), 'class="btn btn-default btn-sx active"'),
+            'has_discussions' => element('has_discussions', $data),
+            'btn_unanswered_discussions' => button( 'discussions/unanswered_discussions', sprintf( $this->lang->line('btn_unanswered_discussions'), $this->discussions->count_unanswered_discussions() ), 'class="btn btn-default btn-xs"'),
+            'btn_all_discussions' => button ( NULl, sprintf( $this->lang->line('btn_all_discussions'), count ($discussions) ), 'class="btn btn-default btn-sx active"'),
             'btn_my_discussions' => button ( 'discussions/my_discussions', sprintf( $this->lang->line('btn_my_discussions'), $this->discussions->count_user_discussions( (int) $this->session->userdata('user_id')) ), 'class="btn btn-default btn-xs"'),
             'page_title' => $category_name,
         );
@@ -199,10 +200,10 @@ class Discussions extends Front_Controller {
 
     public function view($category_permalink=null, $discussion_permalink=null)
     {
-        $discussion_id = $this->discussions->get_discussion_id_from_permalink($discussion_permalink);
+        $discussion_id = $this->discussions->get_discussion_id_from_permalink( (string) $discussion_permalink);
 
         // Get all the comments for the discussion.
-        $comments = $this->comments->get_comments($discussion_id);
+        $comments = $this->comments->get_comments( (int) $discussion_id);
 
         if($comments)
         {
@@ -231,7 +232,7 @@ class Discussions extends Front_Controller {
         }
 
         $page_data = array(
-            'discussion_name' => $this->discussions->get_discussion_name_from_permalink($discussion_permalink),
+            'discussion_name' => $this->discussions->get_discussion_name_from_permalink( (string) $discussion_permalink),
             'comments' => element('comments', $data),
         );
 
