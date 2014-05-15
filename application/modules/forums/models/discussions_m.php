@@ -31,39 +31,18 @@ class discussions_m extends CI_Model {
         $this->dove_core->trigger_events('pre_get_all_discussions');
 
         // Select.
-        $this->db->select('
-            discussions.discussion_id,
-            discussions.category_id,
-            discussions.name,
-            discussions.permalink,
-            discussions.answered,
-            discussions.created_by,
-            discussions.created_date,
-            discussions.created_ip,
-            discussions.last_comment_by,
-            discussions.last_comment_date,
-            discussions.last_comment_ip,
-            discussions.likes,
-            discussions.announcement,
-            discussions.closed,
-            categories.name as category_name,
-            categories.permalink as category_permalink,
-            categories.description as category_description,
-            users.username,
-            users.email,
-        ');
-
-        // Join.
-        $this->db->join('categories', 'categories.id = discussions.category_id')
-                    ->join('users', 'users.id = discussions.created_by');
-
-        // Order By
-        $this->db->order_by('announcement', 'desc')
-                    ->order_by('discussion_id', 'desc')
-                    ->order_by('answered', 'desc');
-
-        // Limit
-        $this->db->limit($limit, $offset);
+        $this->db->select('discussions.discussion_id, discussions.category_id, discussions.name, discussions.permalink,
+            discussions.answered, discussions.created_by, discussions.created_date, discussions.created_ip,
+            discussions.last_comment_by, discussions.last_comment_date, discussions.last_comment_ip, discussions.likes,
+            discussions.announcement, discussions.closed, categories.name as category_name,
+            categories.permalink as category_permalink, categories.description as category_description,
+            users.username, users.email')
+                            ->join('categories', 'categories.id = discussions.category_id')
+                            ->join('users', 'users.id = discussions.created_by')
+                            ->order_by('announcement', 'desc')
+                            ->order_by('discussion_id', 'desc')
+                            ->order_by('answered', 'desc')
+                            ->limit($limit, $offset);
 
         // Options.
         if ( isset($filter) )
@@ -127,45 +106,20 @@ class discussions_m extends CI_Model {
         $this->dove_core->trigger_events('pre_get_category_discussions');
 
         // Select.
-        $this->db->select('
-            discussions.discussion_id,
-            discussions.category_id,
-            discussions.name,
-            discussions.permalink,
-            discussions.answered,
-            discussions.created_by,
-            discussions.created_date,
-            discussions.created_ip,
-            discussions.last_comment_by,
-            discussions.last_comment_date,
-            discussions.last_comment_ip,
-            discussions.likes,
-            discussions.announcement,
-            discussions.closed,
-            categories.name as category_name,
-            categories.permalink as category_permalink,
-            categories.description as category_description,
-            users.username,
-            users.email,
-        ');
-
-        // Join.
-        $this->db->join('categories', 'categories.id = discussions.category_id')
-                    ->join('users', 'users.id = discussions.created_by');
-
-        // Order By
-        $this->db->order_by('announcement', 'desc')
-                    ->order_by('discussion_id', 'desc')
-                    ->order_by('answered', 'desc');
-
-        // Limit
-        $this->db->limit($limit, $offset);
-
-        // Options.
-        $this->db->where('category_id', $category_id);
-
-        // Query.
-        $query = $this->db->get($this->tables['discussions']);
+        $query = $this->db->select('discussions.discussion_id, discussions.category_id, discussions.name,
+            discussions.permalink, discussions.answered, discussions.created_by, discussions.created_date,
+            discussions.created_ip, discussions.last_comment_by, discussions.last_comment_date,
+            discussions.last_comment_ip, discussions.likes, discussions.announcement, discussions.closed,
+            categories.name as category_name, categories.permalink as category_permalink,
+            categories.description as category_description, users.username, users.email')
+                            ->join('categories', 'categories.id = discussions.category_id')
+                            ->join('users', 'users.id = discussions.created_by')
+                            ->order_by('announcement', 'desc')
+                            ->order_by('discussion_id', 'desc')
+                            ->order_by('answered', 'desc')
+                            ->limit($limit, $offset)
+                            ->where('category_id', $category_id)
+                            ->get($this->tables['discussions']);
 
         // Results.
         if($query->num_rows() > 0)
@@ -235,8 +189,8 @@ class discussions_m extends CI_Model {
     {
         // Query
         $query = $this->db->select('*')
-            ->where('answered', '0')
-            ->get($this->tables['discussions']);
+                            ->where('answered', '0')
+                            ->get($this->tables['discussions']);
 
         // Result
         return ( $query->num_rows() > 0 ? $query->num_rows() : 0 );
@@ -286,13 +240,11 @@ class discussions_m extends CI_Model {
 
     public function get_id_from_permalink($permalink)
     {
-        // Select.
-        $this->db->select('discussion_id')
-                    ->where('permalink', $permalink)
-                    ->limit('1');
-
         // Query.
-        $query = $this->db->get($this->tables['discussions']);
+        $query = $this->db->select('discussion_id')
+                    ->where('permalink', $permalink)
+                    ->limit('1')
+                    ->get($this->tables['discussions']);
 
         // Result.
         return ( $query->num_rows() > 0 ? $query->row('discussion_id') : 0 );
@@ -327,12 +279,10 @@ class discussions_m extends CI_Model {
 
     public function get_discussion_id_from_permalink($discussion_permalink)
     {
-        // Select
-        $this->db->select('discussion_id')
-                    ->where('permalink', $discussion_permalink);
-
         // Query.
-        $query = $this->db->get('discussions');
+        $query = $this->db->select('discussion_id')
+                    ->where('permalink', $discussion_permalink)
+                    ->get($this->tables['discussions']);
 
         // Result.
         return ( $query->num_rows() > 0 ? $query->row('discussion_id') : false );
@@ -340,12 +290,10 @@ class discussions_m extends CI_Model {
 
     public function get_discussion_name_from_permalink($discussion_permalink)
     {
-        // Select.
-        $this->db->select('name')
-                    ->where('permalink', $discussion_permalink);
-
         // Query.
-        $query = $this->db->get('discussions');
+        $query = $this->db->select('name')
+                            ->where('permalink', $discussion_permalink)
+                            ->get('discussions');
 
         // Result.
         return ( $query->num_rows() > 0 ? $query->row('name') : false );

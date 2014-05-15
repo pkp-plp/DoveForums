@@ -59,6 +59,7 @@ $route['categories/(:any)'] = 'forums/discussions/index/$1';
 
 // Members.
 $route['members/(:any)'] = 'forums/members/$1';
+$route['members'] = 'forums/members/view';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

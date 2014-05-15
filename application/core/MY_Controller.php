@@ -97,7 +97,7 @@ class Front_Controller extends MY_Controller{
         $config['show'] = false;
 
         // Build Message Data.
-        /* TODO - Find a better way of handeling messages */
+        /* TODO - Find a better way of handling messages */
         if($this->session->flashdata('error'))
         {
             $message_body = $this->session->flashdata('error');

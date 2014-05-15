@@ -27,52 +27,20 @@ class categories_m extends CI_Model {
 
     public function get_categories()
     {
-        // Select.
-        $this->db->select('
-            id,
-            name,
-            permalink,
-            description,
-            order,
-        ');
-
         // Query.
-        $query = $this->db->get('categories');
+        $query = $this->db->select('id, name, permalink, description, order')
+                            ->get($this->tables['categories']);
 
         // Result.
-        if($query->num_rows() > 0)
-        {
-            foreach($query->result_array() as $row)
-            {
-                $data[] = array(
-                    'id'            => $row['id'],
-                    'name'          => $row['name'],
-                    'permalink'     => $row['permalink'],
-                    'description'   => $row['description'],
-                    'order'         => $row['order'],
-                );
-            }
-
-            return $data;
-        }
-        else
-        {
-            return false;
-        }
+        return ( $query->num_rows() > 0 ? $query->result_array() : NULL );
     }
 
     public function count_discussions($category_id)
     {
-        // Select.
-        $this->db->select('*');
-
-        // Options.
-        $options = array(
-            'category_id' => $category_id,
-        );
-
         // Query.
-        $query = $this->db->get_where('discussions', $options);
+        $query = $this->db->select('*')
+                            ->where('category_id', $category_id)
+                            ->get($this->tables['discussions']);
 
         // Result.
         return ( $query->num_rows() > 0 ? $query->num_rows() : 0 );
@@ -84,16 +52,10 @@ class categories_m extends CI_Model {
         $query = $this->db->select('permalink')
                             ->where('id', $category_id)
                             ->limit(1)
-                            ->get('categories');
+                            ->get($this->tables['categories']);
 
-        if ( $query->num_rows() > 0 )
-        {
-            return $query->row('permalink');
-        }
-        else
-        {
-            return FALSE;
-        }
+        // Result.
+        return ( $query->num_rows() > 0 ? $query->row('permalink') : NULL );
     }
 
     public function get_id_by_category_permalink($category_permalink)
@@ -102,7 +64,7 @@ class categories_m extends CI_Model {
         $query = $this->db->select('id')
                             ->where('permalink', $category_permalink)
                             ->limit(1)
-                            ->get('categories');
+                            ->get($this->tables['categories']);
 
         // Result.
         return ( $query->num_rows() > 0 ? $query->row('id') : NULL );
@@ -114,7 +76,7 @@ class categories_m extends CI_Model {
         $query = $this->db->select('name')
                             ->where('permalink', $category_permalink)
                             ->limit(1)
-                            ->get('categories');
+                            ->get($this->tables['categories']);
         // Result.
         return ( $query->num_rows() > 0 ? $query->row('name') : NULL );
     }

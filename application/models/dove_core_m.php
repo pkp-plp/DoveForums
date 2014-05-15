@@ -315,8 +315,8 @@ class Dove_core_m extends CI_Model
         {
             $ip_address = $this->input->ip_address();
 
-            $this->db->where(array('ip_address' => $ip_address, 'login' => $identity));
-            $this->db->or_where('time <', time() - $expire_period, FALSE);
+            $this->db->where(array('ip_address' => $ip_address, 'login' => $identity))
+                        ->or_where('time <', time() - $expire_period, FALSE);
 
             return $this->db->delete($this->tables['login_attempts']);
         }

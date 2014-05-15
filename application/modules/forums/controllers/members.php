@@ -89,6 +89,16 @@ class Members extends Front_Controller {
         ),
     );
 
+    public function view()
+    {
+        // Get all members.
+        $members = $this->users->get_all_members();
+
+        echo '<pre>';
+        print_r($members);
+        echo '</pre>';
+    }
+
     public function sign_in()
     {
         if ( $this->login_check() === TRUE )

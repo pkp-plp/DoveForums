@@ -27,3 +27,4 @@
 $config['tables']['discussions']            = 'discussions';
 $config['tables']['comments']               = 'comments';
 $config['tables']['users']                  = 'users';
+$config['tables']['categories']             = 'categories';

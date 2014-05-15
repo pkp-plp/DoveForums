@@ -28,30 +28,13 @@ class comments_m extends CI_Model {
     public function get_comments($discussion_id)
     {
         // Select.
-        $this->db->select('
-            comments.comment_id,
-            comments.comment,
-            comments.created_by,
-            comments.created_date,
-            comments.created_ip,
-            comments.discussion_id,
-            users.id as user_id,
-            users.username,
-            users.email,
-            users.group_id,
-            users.signature,
-            groups.display_name,
-        ');
-
-        // Join
-        $this->db->join('users', 'users.id = comments.created_by')
-                    ->join('groups', 'groups.id = users.group_id');
-
-        // Where.
-        $this->db->where('discussion_id', $discussion_id);
-
-        // Query.
-        $query = $this->db->get('comments');
+        $query = $this->db->select('comments.comment_id, comments.comment, comments.created_by, comments.created_date,
+            comments.created_ip, comments.discussion_id, users.id as user_id, users.username, users.email, users.group_id,
+            users.signature, groups.display_name')
+                            ->join('users', 'users.id = comments.created_by')
+                            ->join('groups', 'groups.id = users.group_id')
+                            ->where('discussion_id', $discussion_id)
+                            ->get($this->tables['comments']);
 
         // Result.
         if($query->num_rows() > 0)
