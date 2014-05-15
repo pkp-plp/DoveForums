@@ -32,11 +32,16 @@ class categories_m extends CI_Model {
                             ->get($this->tables['categories']);
 
         // Result.
-        return ( $query->num_rows() > 0 ? $query->result_array() : NULL );
+        return ( $query->num_rows() > 0 ? $query->result() : NULL );
     }
 
     public function count_discussions($category_id)
     {
+        if(!is_int($category_id))
+        {
+            return NULL;
+        }
+
         // Query.
         $query = $this->db->select('*')
                             ->where('category_id', $category_id)
@@ -48,6 +53,11 @@ class categories_m extends CI_Model {
 
     public function get_category_permalink_by_id($category_id)
     {
+        if(!is_int($category_id))
+        {
+            return NULL;
+        }
+
         // Query.
         $query = $this->db->select('permalink')
                             ->where('id', $category_id)
@@ -60,6 +70,11 @@ class categories_m extends CI_Model {
 
     public function get_id_by_category_permalink($category_permalink)
     {
+        if(!is_string($category_permalink))
+        {
+            return NULL;
+        }
+
         // Query.
         $query = $this->db->select('id')
                             ->where('permalink', $category_permalink)
@@ -72,6 +87,11 @@ class categories_m extends CI_Model {
 
     public function get_category_name_by_permalink($category_permalink)
     {
+        if(!is_string($category_permalink))
+        {
+            return NULL;
+        }
+
         // Query.
         $query = $this->db->select('name')
                             ->where('permalink', $category_permalink)

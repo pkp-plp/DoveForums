@@ -31,12 +31,13 @@ class discussions_m extends CI_Model {
         $this->dove_core->trigger_events('pre_get_all_discussions');
 
         // Select.
-        $this->db->select('discussions.discussion_id, discussions.category_id, discussions.name, discussions.permalink,
-            discussions.answered, discussions.created_by, discussions.created_date, discussions.created_ip,
-            discussions.last_comment_by, discussions.last_comment_date, discussions.last_comment_ip, discussions.likes,
-            discussions.announcement, discussions.closed, categories.name as category_name,
-            categories.permalink as category_permalink, categories.description as category_description,
-            users.username, users.email')
+        $this->db->select('discussions.discussion_id, discussions.category_id, discussions.name as discussion_name,
+            discussions.permalink as discussion_permalink, discussions.answered, discussions.created_by,
+            discussions.created_date, discussions.created_ip, discussions.last_comment_by,
+            discussions.last_comment_date, discussions.last_comment_ip, discussions.likes, discussions.announcement,
+            discussions.closed, categories.name as category_name, categories.permalink as category_permalink,
+            categories.description as category_description, users.username as created_by_username,
+            users.email as created_by_email')
                             ->join('categories', 'categories.id = discussions.category_id')
                             ->join('users', 'users.id = discussions.created_by')
                             ->order_by('announcement', 'desc')
@@ -63,36 +64,7 @@ class discussions_m extends CI_Model {
         // Results.
         if($query->num_rows() > 0)
         {
-            foreach($query->result_array() as $row)
-            {
-                // Count the amount of comments.
-                $comment_count = $this->comments->count_discussion_comments($row['discussion_id']);
-
-                $data[] = array(
-                    'discussion_id'         => $row['discussion_id'],
-                    'category_id'           => $row['category_id'],
-                    'discussion_name'       => $row['name'],
-                    'discussion_permalink'  => $row['permalink'],
-                    'created_by'            => $row['created_by'],
-                    'created_by_username'   => $row['username'],
-                    'created_date'          => $row['created_date'],
-                    'created_ip'            => $row['created_ip'],
-                    'last_comment_by'       => $row['last_comment_by'],
-                    'last_comment_date'     => $row['last_comment_date'],
-                    'last_comment_ip'       => $row['last_comment_ip'],
-                    'category_name'         => $row['category_name'],
-                    'category_permalink'    => $row['category_permalink'],
-                    'category_description'  => $row['category_description'],
-                    'created_by_email'      => $row['email'],
-                    'comments'              => $comment_count,
-                    'answered'              => $row['answered'],
-                    'likes'                 => $row['likes'],
-                    'announcement'          => $row['announcement'],
-                    'closed'                => $row['closed'],
-                );
-            }
-
-            return $data;
+            return $query->result();
         }
         else
         {
@@ -106,12 +78,13 @@ class discussions_m extends CI_Model {
         $this->dove_core->trigger_events('pre_get_category_discussions');
 
         // Select.
-        $query = $this->db->select('discussions.discussion_id, discussions.category_id, discussions.name,
-            discussions.permalink, discussions.answered, discussions.created_by, discussions.created_date,
-            discussions.created_ip, discussions.last_comment_by, discussions.last_comment_date,
-            discussions.last_comment_ip, discussions.likes, discussions.announcement, discussions.closed,
-            categories.name as category_name, categories.permalink as category_permalink,
-            categories.description as category_description, users.username, users.email')
+        $query = $this->db->select('discussions.discussion_id, discussions.category_id, discussions.name as discussion_name,
+            discussions.permalink as discussion_permalink, discussions.answered, discussions.created_by,
+            discussions.created_date, discussions.created_ip, discussions.last_comment_by,
+            discussions.last_comment_date, discussions.last_comment_ip, discussions.likes, discussions.announcement,
+            discussions.closed, categories.name as category_name, categories.permalink as category_permalink,
+            categories.description as category_description, users.username as created_by_username,
+            users.email as created_by_email')
                             ->join('categories', 'categories.id = discussions.category_id')
                             ->join('users', 'users.id = discussions.created_by')
                             ->order_by('announcement', 'desc')
@@ -124,36 +97,7 @@ class discussions_m extends CI_Model {
         // Results.
         if($query->num_rows() > 0)
         {
-            foreach($query->result_array() as $row)
-            {
-                // Count the amount of comments.
-                $comment_count = $this->comments->count_discussion_comments($row['discussion_id']);
-
-                $data[] = array(
-                    'discussion_id'         => $row['discussion_id'],
-                    'category_id'           => $row['category_id'],
-                    'discussion_name'       => $row['name'],
-                    'discussion_permalink'  => $row['permalink'],
-                    'created_by'            => $row['created_by'],
-                    'created_by_username'   => $row['username'],
-                    'created_date'          => $row['created_date'],
-                    'created_ip'            => $row['created_ip'],
-                    'last_comment_by'       => $row['last_comment_by'],
-                    'last_comment_date'     => $row['last_comment_date'],
-                    'last_comment_ip'       => $row['last_comment_ip'],
-                    'category_name'         => $row['category_name'],
-                    'category_permalink'    => $row['category_permalink'],
-                    'category_description'  => $row['category_description'],
-                    'created_by_email'      => $row['email'],
-                    'comments'              => $comment_count,
-                    'answered'              => $row['answered'],
-                    'likes'                 => $row['likes'],
-                    'announcement'          => $row['announcement'],
-                    'closed'                => $row['closed'],
-                );
-            }
-
-            return $data;
+            return $query->result();
         }
         else
         {
@@ -173,6 +117,11 @@ class discussions_m extends CI_Model {
 
     public function count_category_discussions($category_permalink)
     {
+        if(!is_string($category_permalink))
+        {
+            return NULL;
+        }
+
         // Get category ID.
         $category_id = $this->categories->get_id_by_category_permalink($category_permalink);
 
@@ -198,6 +147,11 @@ class discussions_m extends CI_Model {
 
     public function count_user_discussions($user_id)
     {
+        if(!is_int($user_id))
+        {
+            return NULL;
+        }
+
         // Query.
         $query = $this->db->select('*')
                             ->where('created_by', $user_id)
@@ -209,6 +163,11 @@ class discussions_m extends CI_Model {
 
     public function add_discussion($discussion_data, $comment_data)
     {
+        if(!is_array($discussion_data) || !is_array($comment_data))
+        {
+            return NULL;
+        }
+
         // Trans start.
         $this->db->trans_start();
 
@@ -240,18 +199,28 @@ class discussions_m extends CI_Model {
 
     public function get_id_from_permalink($permalink)
     {
+        if(!is_string($permalink))
+        {
+            return NULL;
+        }
+
         // Query.
         $query = $this->db->select('discussion_id')
+                    ->limit(1)
                     ->where('permalink', $permalink)
-                    ->limit('1')
                     ->get($this->tables['discussions']);
 
         // Result.
-        return ( $query->num_rows() > 0 ? $query->row('discussion_id') : 0 );
+        return ( $query->num_rows() > 0 ? $query->result() : 0 );
     }
 
     public function delete($discussion_id)
     {
+        if(!is_int($discussion_id))
+        {
+            return NULL;
+        }
+
         // Delete.
         $delete = $this->dove_core->delete(array('discussion_id' => $discussion_id), $this->tables['discussions']);
 
@@ -279,23 +248,35 @@ class discussions_m extends CI_Model {
 
     public function get_discussion_id_from_permalink($discussion_permalink)
     {
+        if(!is_string($discussion_permalink))
+        {
+            return NULL;
+        }
+
         // Query.
         $query = $this->db->select('discussion_id')
+                    ->limit(1)
                     ->where('permalink', $discussion_permalink)
                     ->get($this->tables['discussions']);
 
         // Result.
-        return ( $query->num_rows() > 0 ? $query->row('discussion_id') : false );
+        return ( $query->num_rows() > 0 ? $query->result() : false );
     }
 
     public function get_discussion_name_from_permalink($discussion_permalink)
     {
+        if(!is_string($discussion_permalink))
+        {
+            return NULL;
+        }
+
         // Query.
         $query = $this->db->select('name')
+                            ->limit(1)
                             ->where('permalink', $discussion_permalink)
                             ->get('discussions');
 
         // Result.
-        return ( $query->num_rows() > 0 ? $query->row('name') : false );
+        return ( $query->num_rows() > 0 ? $query->result() : false );
     }
 }

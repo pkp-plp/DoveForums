@@ -131,9 +131,9 @@ class Front_Controller extends MY_Controller{
 
         // Construct the navigation.
         $navigation_data = array(
-            'logo' => anchor(site_url(), $this->config->item('site_name'), 'class="navbar-brand"'),
-            'sign_in_link' => anchor(site_url('members/sign_in'), '<i class="fa fa-sign-in"></i> Sign In'),
-            'sign_out_link' => anchor(site_url('members/sign_out'), '<i class="fa fa-sign-out"></i> Sign Out'),
+            'logo' => anchor( site_url(), $this->config->item('site_name'), 'class="navbar-brand"' ),
+            'sign_in_link' => anchor( site_url('members/sign_in'), '<i class="fa fa-sign-in"></i> Sign In' ),
+            'sign_out_link' => anchor( site_url('members/sign_out'), '<i class="fa fa-sign-out"></i> Sign Out' ),
         );
 
         $data['navigation'] = $this->parser->parse('sections/navigation_template', $navigation_data, $config);
@@ -144,14 +144,14 @@ class Front_Controller extends MY_Controller{
         // Construct the sidebar.
         $categories = $this->categories->get_categories();
 
-        if($categories)
+        if(is_array($categories))
         {
             foreach($categories as $cat)
             {
-                $discussions = $this->categories->count_discussions($cat['id']);
+                $discussions = $this->categories->count_discussions( (int) $cat->id );
 
                 $data['categories'][] = array(
-                    'category_name' => anchor(site_url('categories/'.$cat['permalink'].''), ''.$cat['name'].'<span class="label label-default pull-right"> '.$discussions.' </span>'),
+                    'category_name' => anchor( site_url('categories/'.$cat->permalink.''), ''.$cat->name.'<span class="label label-default pull-right"> '.$discussions.' </span>'),
                 );
             }
         }
@@ -162,16 +162,16 @@ class Front_Controller extends MY_Controller{
         foreach ( $members as $row )
         {
             $data['members'][] = array(
-                'member' => img( array( 'src' => $this->gravatar->get_gravatar( $row['email'], $this->config->item('gravatar_rating'), '45', $this->config->item('default_image') ), 'class' => 'img-rounded img-responsive', 'title' => $row['username']) ),
+                'member' => img( array( 'src' => $this->gravatar->get_gravatar( $row->email, $this->config->item('gravatar_rating'), '45', $this->config->item('default_image') ), 'class' => 'img-rounded img-responsive', 'title' => $row->username) ),
             );
         }
 
         // Create the data for the right sidebar.
         $right_sidebar_data = array(
-            'categories' => $data['categories'],
+            'categories' => element('categories', $data),
             'member_count' => $this->users->count_members(),
-            'members' => $data['members'],
-            'new_discussion_button' => anchor( site_url('discussion/new_discussion'), $this->lang->line('btn_new_discussion'), 'class="btn btn-success btn-icon col-md-12"' ),
+            'members' => element('members', $data),
+            'new_discussion_button' => button( 'discussion/new_discussion', $this->lang->line('btn_new_discussion'), 'class="btn btn-success btn-icon col-md-12"'),
         );
 
         // Parse the template & data.
@@ -198,7 +198,7 @@ class Front_Controller extends MY_Controller{
         foreach($tags as $tag)
         {
             $data['tags'][] = array(
-                'tag' => anchor(site_url('search/'.$tag.''), $tag, 'class="label label-info"'),
+                'tag' => anchor( site_url('search/'.$tag.''), $tag, 'class="label label-info"' ),
             );
         }
 

@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('session', 'database', 'Parser', 'settings', 'gravatar', 'dove_core', 'pagination', 'form_validation', 'user_agent');
+$autoload['libraries'] = array('session', 'database', 'Parser', 'settings', 'gravatar', 'dove_core', 'pagination', 'form_validation', 'user_agent', 'typography');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('session', 'database', 'Parser', 'settings', 'gra
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'breadcrumb', 'html', 'form');
+$autoload['helper'] = array('url', 'breadcrumb', 'html', 'form', 'inflector', 'array', 'functions');
 
 
 /*

@@ -29,36 +29,15 @@ class comments_m extends CI_Model {
     {
         // Select.
         $query = $this->db->select('comments.comment_id, comments.comment, comments.created_by, comments.created_date,
-            comments.created_ip, comments.discussion_id, users.id as user_id, users.username, users.email, users.group_id,
-            users.signature, groups.display_name')
+            comments.created_ip, comments.discussion_id, users.id as user_id, users.username as created_by_username,
+            users.email as created_by_email, users.group_id, users.signature, groups.display_name as group_name')
                             ->join('users', 'users.id = comments.created_by')
                             ->join('groups', 'groups.id = users.group_id')
                             ->where('discussion_id', $discussion_id)
                             ->get($this->tables['comments']);
 
         // Result.
-        if($query->num_rows() > 0)
-        {
-            foreach($query->result_array() as $row)
-            {
-                $comments[] = array(
-                    'comment' => $row['comment'],
-                    'created_date' => $row['created_date'],
-                    'created_by' => $row['username'],
-                    'created_by_email' => $row['email'],
-                    'group_id' => $row['group_id'],
-                    'signature' => $row['signature'],
-                    'group_name' => $row['display_name'],
-                    'user_id' => $row['user_id']
-                );
-            }
-
-            return $comments;
-        }
-        else
-        {
-            return false;
-        }
+        return ( $query->num_rows() > 0 ? $query->result() : NULL );
     }
 
     public function count_discussion_comments($discussion_id)

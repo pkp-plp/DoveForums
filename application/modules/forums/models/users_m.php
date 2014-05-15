@@ -43,7 +43,7 @@ class users_m extends CI_Model {
                             ->get($this->tables['users']);
 
         // Result.
-        return ( $query->num_rows() > 0 ? $query->result_array() : NULL );
+        return ( $query->num_rows() > 0 ? $query->result() : NULL );
     }
 
     public function get_sidebar_members()
@@ -55,6 +55,6 @@ class users_m extends CI_Model {
                             ->get($this->tables['users']);
 
         // Result.
-        return ( $query->num_rows() > 0 ? $query->result_array() : NULL );
+        return ( $query->num_rows() > 0 ? $query->result() : NULL );
     }
 }

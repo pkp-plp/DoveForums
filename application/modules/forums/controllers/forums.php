@@ -42,23 +42,23 @@ class Forums extends Front_Controller {
         $has_discussions = ( is_array($discussions) ? TRUE : FALSE );
 
         // Initialize some variables.
-        $data['unanswered'] = 0;
-        $data['my_discussions'] = 0;
+        $data['unanswered'] = (int) 0;
+        $data['my_discussions'] = (int) 0;
 
         if (($discussions))
         {
-            foreach($discussions as $discussion)
+            foreach($discussions as $row)
             {
-                $user = $this->dove_core->user($discussion['last_comment_by']);
+                $user = $this->dove_core->user($row->last_comment_by);
 
                 // See if the discussion is a sticky.
-                $announcement = ( $discussion['announcement'] == 1 ? $this->lang->line('text_announcement') : NULL );
+                $data['announcement'] = ( $row->announcement == 1 ? $this->lang->line('text_announcement') : NULL );
 
                 // See if the discussion is closed.
-                $closed = ( $discussion['closed'] == 1 ? $this->lang->line('text_closed') : NULL );
+                $data['closed'] = ( $row->closed == 1 ? $this->lang->line('text_closed') : NULL );
 
                 // Is the discussion been marked as answered.
-                if ( $discussion['answered'] == 0 )
+                if ( $row->answered == 0 )
                 {
                     $data['unanswered']++;
                     $data['tag'] = '<span class="label label-info" title="'.$this->lang->line('title_unanswered').'">'.$this->lang->line('label_unanswered').'</span>';
@@ -67,36 +67,36 @@ class Forums extends Front_Controller {
                 }
 
                 // Is the logged in user the creator of the discussion.
-                if ( $discussion['created_by'] == $this->session->userdata('user_id') )
+                if ( $row->created_by == $this->session->userdata('user_id') )
                 {
                     $data['my_discussions']++;
-                    $owned = 1;
+                    $data['owned'] = (int) 1;
                 }
                 else
                 {
-                    $owned = 0;
+                    $data['owned'] = (int) 0;
                 }
 
                 // Build data array.
                 $data['discussions'][] = array(
                     'discussion_info' => array(
-                        'discussion_name' => anchor( site_url('discussion/'.$discussion['category_permalink'].'/'.$discussion['discussion_permalink'].''), $discussion['discussion_name']),
-                        'comments' => $discussion['comments'],
+                        'discussion_name' => anchor( site_url('discussion/'.$row->category_permalink.'/'.$row->discussion_permalink.''), $row->discussion_name),
+                        'comments' => $this->comments->count_discussion_comments( (int) $row->discussion_id),
                         'last_comment_by' => anchor( site_url('users/profile/'.$user->username.''), $user->username),
-                        'last_comment_date' => timespan( $discussion['last_comment_date'], time() ),
-                        'category' => anchor( site_url('categories/'.$discussion['category_permalink'].'/'), '<i class="fa fa-sitemap"></i> '.$discussion['category_name'].'', 'class="label label-default" title="'.sprintf($this->lang->line('label_category'), $discussion['category_name']).' - '.$discussion['category_description'].'"' ),
-                        'tag' => $data['tag'],
-                        'likes' => $discussion['likes'],
-                        'closed' => $closed,
-                        'announcement' => $announcement,
-                        'owned' => $owned,
+                        'last_comment_date' => timespan( $row->last_comment_date, time() ),
+                        'category' => anchor( site_url('categories/'.$row->category_permalink.'/'), '<i class="fa fa-sitemap"></i> '.$row->category_name.'', 'class="label label-default" title="'.sprintf($this->lang->line('label_category'), $row->category_name).' - '.$row->category_description.'"' ),
+                        'tag' => element('tag', $data),
+                        'likes' => $row->likes,
+                        'closed' => element('closed', $data),
+                        'announcement' => element('announcement', $data),
+                        'owned' => element('owned', $data),
                     ),
                     'user_info' => array(
-                        'gravatar' => img( array( 'src' => $this->gravatar->get_gravatar( $discussion['created_by_email'], $this->config->item('gravatar_rating'), '45', $this->config->item('default_image') ), 'class' => 'media-object img-thumbnail img-responsive') ),
+                        'gravatar' => img( array( 'src' => $this->gravatar->get_gravatar( $row->created_by_email, $this->config->item('gravatar_rating'), '45', $this->config->item('default_image') ), 'class' => 'media-object img-thumbnail img-responsive') ),
                     ),
                     'buttons' => array(
-                        'edit_button' => anchor( site_url( 'discussion/edit_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"' ),
-                        'delete_button' => anchor( site_url( 'discussion/delete_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"' ),
+                        'btn_edit' => button( 'discussion/edit_discussion/'.$row->discussion_permalink, '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"' ),
+                        'btn_delete' => button( 'discussion/delete_discussion/'.$row->discussion_permalink, '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"' ),
                     ),
                 );
             }
@@ -109,16 +109,16 @@ class Forums extends Front_Controller {
         }
 
         $page_data = array(
-            'discussions' => $data['discussions'],
+            'discussions' => element('discussions', $data),
             'pagination' => $this->pagination->create_links(),
             'has_discussions' => $has_discussions,
             'btn_unanswered_discussions' => anchor( site_url('discussions/unanswered_discussions'), sprintf($this->lang->line('btn_unanswered_discussions'), $this->discussions->count_unanswered_discussions()), 'class="btn btn-default btn-xs"'),
             'btn_all_discussions' => anchor( site_url(), sprintf($this->lang->line('btn_all_discussions'), $this->discussions->count_all_discussions()), 'class="btn btn-default btn-sx active"'),
-            'btn_my_discussions' => anchor( site_url('discussions/my_discussions'), sprintf($this->lang->line('btn_my_discussions'), $this->discussions->count_user_discussions($this->session->userdata('user_id'))), 'class="btn btn-default btn-xs"'),
+            'btn_my_discussions' => anchor( site_url('discussions/my_discussions'), sprintf($this->lang->line('btn_my_discussions'), $this->discussions->count_user_discussions( (int) $this->session->userdata('user_id'))), 'class="btn btn-default btn-xs"'),
             'page_title' => 'All Discussions',
         );
 
-        $this->construct_template($page_data, 'forums_template', $page_data['page_title']);
+        $this->construct_template($page_data, 'forums_template', element('page_title', $page_data));
     }
 
     public function filtered($filter)
@@ -150,22 +150,22 @@ class Forums extends Front_Controller {
         $has_discussions = ( is_array($discussions) ? TRUE : FALSE );
 
         // Initialize some variables.
-        $data['unanswered'] = 0;
-        $data['my_discussions'] = 0;
+        $data['unanswered'] = (int) 0;
+        $data['my_discussions'] = (int) 0;
 
         if ( ($discussions) )
         {
-            foreach($discussions as $discussion)
+            foreach($discussions as $row)
             {
-                $user = $this->dove_core->user($discussion['last_comment_by']);
+                $user = $this->dove_core->user($row->last_comment_by);
 
                 // See if the discussion is a sticky.
-                $announcement = ( $discussion['announcement'] == 1 ? $this->lang->line('text_announcement') : NULL );
+                $data['announcement'] = ( $row->announcement == 1 ? $this->lang->line('text_announcement') : NULL );
 
                 // See if the discussion is closed.
-                $closed = ( $discussion['closed'] == 1 ? $this->lang->line('text_closed') : NULL );
+                $data['closed'] = ( $row->closed == 1 ? $this->lang->line('text_closed') : NULL );
 
-                if ( $discussion['answered'] == 0 )
+                if ( $row->answered == 0 )
                 {
                     $data['unanswered']++;
                     $data['tag'] = '<span class="label label-info" title="'.$this->lang->line('title_unanswered').'">'.$this->lang->line('label_unanswered').'</span>';
@@ -173,35 +173,35 @@ class Forums extends Front_Controller {
                     $data['tag'] = '<span class="label label-success" title="'.$this->lang->line('title_answered').'">'.$this->lang->line('label_answered').'</span>';
                 }
 
-                if ( $discussion['created_by'] == $this->session->userdata('user_id') )
+                if ( $row->created_by == $this->session->userdata('user_id') )
                 {
                     $data['my_discussions']++;
-                    $owned = 1;
+                    $data['owned'] = (int) 1;
                 }
                 else
                 {
-                    $owned = 0;
+                    $data['owned'] = (int) 0;
                 }
 
                 $data['discussions'][] = array(
                     'discussion_info' => array(
-                        'discussion_name' => anchor( site_url('discussion/'.$discussion['category_permalink'].'/'.$discussion['discussion_permalink'].''), $discussion['discussion_name']),
-                        'comments' => $discussion['comments'],
+                        'discussion_name' => anchor( site_url('discussion/'.$row->category_permalink.'/'.$row->discussion_permalink.''), $row->discussion_name),
+                        'comments' => $this->comments->count_discussion_comments( (int) $row->discussion_id ),
                         'last_comment_by' => anchor( site_url('users/profile/'.$user->username.''), $user->username),
-                        'last_comment_date' => timespan( $discussion['last_comment_date'], time() ),
-                        'category' => anchor( site_url('categories/'.$discussion['category_permalink'].'/'), '<i class="fa fa-sitemap"></i> '.$discussion['category_name'].'', 'class="label label-default" title="'.sprintf($this->lang->line('label_category'), $discussion['category_name']).' - '.$discussion['category_description'].'"' ),
-                        'tag' => $data['tag'],
-                        'likes' => $discussion['likes'],
-                        'closed' => $closed,
-                        'announcement' => $announcement,
-                        'owned' => $owned,
+                        'last_comment_date' => timespan( $row->last_comment_date, time() ),
+                        'category' => anchor( site_url('categories/'.$row->category_permalink.'/'), '<i class="fa fa-sitemap"></i> '.$row->category_name.'', 'class="label label-default" title="'.sprintf($this->lang->line('label_category'), $row->category_name).' - '.$row->category_description.'"' ),
+                        'tag' => element('tag', $data),
+                        'likes' => $row->likes,
+                        'closed' => element('closed', $data),
+                        'announcement' => element('announcement', $data),
+                        'owned' => element('owned', $data),
                     ),
                     'user_info' => array(
-                        'gravatar' => img( array( 'src' => $this->gravatar->get_gravatar( $discussion['created_by_email'], $this->config->item('gravatar_rating'), '45', $this->config->item('default_image') ), 'class' => 'media-object img-thumbnail img-responsive') ),
+                        'gravatar' => img( array( 'src' => $this->gravatar->get_gravatar( $row->created_by_email, $this->config->item('gravatar_rating'), '45', $this->config->item('default_image') ), 'class' => 'media-object img-thumbnail img-responsive') ),
                     ),
                     'buttons' => array(
-                        'edit_button' => anchor( site_url( 'discussion/edit_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"' ),
-                        'delete_button' => anchor( site_url( 'discussion/delete_discussion/'.$discussion['discussion_permalink'] ), '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"' ),
+                        'btn_edit' => anchor( site_url( 'discussion/edit_discussion/'.$row->discussion_permalink ), '<i class="fa fa-pencil"></i>', 'class="btn btn-success btn-sm"' ),
+                        'btn_delete' => anchor( site_url( 'discussion/delete_discussion/'.$row->discussion_permalink ), '<i class="fa fa-trash-o"></i>', 'class="btn btn-success btn-sm"' ),
                     ),
                 );
             }
@@ -214,15 +214,15 @@ class Forums extends Front_Controller {
         }
 
         $page_data = array(
-            'discussions' => $data['discussions'],
+            'discussions' => element('discussions', $data),
             'pagination' => $this->pagination->create_links(),
             'has_discussions' => $has_discussions,
             'btn_unanswered_discussions' => anchor( site_url('discussions/unanswered_discussions'), sprintf($this->lang->line('btn_unanswered_discussions'), $this->discussions->count_unanswered_discussions()), 'class="btn btn-default btn-xs"'),
             'btn_all_discussions' => anchor( site_url(), sprintf($this->lang->line('btn_all_discussions'), $this->discussions->count_all_discussions()), 'class="btn btn-default btn-sx active"'),
-            'btn_my_discussions' => anchor( site_url('discussions/my_discussions'), sprintf($this->lang->line('btn_my_discussions'), $this->discussions->count_user_discussions($this->session->userdata('user_id'))), 'class="btn btn-default btn-xs"'),
+            'btn_my_discussions' => anchor( site_url('discussions/my_discussions'), sprintf($this->lang->line('btn_my_discussions'), $this->discussions->count_user_discussions( (int) $this->session->userdata('user_id') )), 'class="btn btn-default btn-xs"'),
             'page_title' => $data['page_title'],
         );
 
-        $this->construct_template($page_data, 'forums_template', $data['page_title']);
+        $this->construct_template($page_data, 'forums_template', element('page_title', $data));
     }
 }

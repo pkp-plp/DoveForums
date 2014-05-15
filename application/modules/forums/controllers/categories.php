@@ -25,27 +25,5 @@
 
 class Categories extends Front_Controller {
 
-    public function view($category_permalink=null)
-    {
-        // See if a category has been provided.
-        if($category_permalink)
-        {
-            // $discussions = $this->discussions->get_all_discussions();
-        } else {
-            // $discussions = $this->dicussions->get_category_discussions($category_permalink);
-        }
 
-        $page_data = array(
-            'test' => 'Test content',
-        );
-
-        $this->construct_template($page_data, 'view_template', $this->lang->line('page_view'));
-    }
-
-    public function create_category()
-    {
-        $page_data = array();
-
-
-    }
 }

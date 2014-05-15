@@ -55,11 +55,11 @@
                         <div class="col-md-1">
                             <div class="btn-group-vertical">
                                 <!-- IF {permissions->edit_discussions->value} == 1 -->
-                                {buttons->edit_button}
+                                {buttons->btn_edit}
                                 <!-- END -->
 
                                 <!-- IF {permissions->delete_discussions->value} == 1 -->
-                                {buttons->delete_button}
+                                {buttons->btn_delete}
                                 <!-- END -->
                             </div>
                         </div>
