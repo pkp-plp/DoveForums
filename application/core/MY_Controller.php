@@ -39,7 +39,13 @@ class MY_Controller extends CI_Controller{
         $this->load->config('forums', TRUE);
 
         // Load in required language files.
-        $this->load->language('forums/frontend', $this->config->item('site_language'));
+        if(!$this->config->item('site_language'))
+        {
+            $this->load->language('forums/frontend', 'en');
+        } else {
+            $this->load->language('forums/frontend', $this->config->item('site_language'));
+        }
+
 
         // Tables
         $this->tables = $this->config->item('tables', 'forums');
