@@ -26,6 +26,8 @@
 class MY_Controller extends CI_Controller{
 
     public $tables = array();
+    public $language;
+    public $frontend_lang;
 
     public function __construct()
     {
@@ -38,12 +40,14 @@ class MY_Controller extends CI_Controller{
         $this->load->model('forums/comments_m', 'comments');
         $this->load->config('forums', TRUE);
 
+        $this->language = $this->config->item('site_language');
+
         // Load in required language files.
-        if(!$this->config->item('site_language'))
+        if(!$this->load->language('forums/frontend', $this->language))
         {
-            $this->load->language('forums/frontend', 'en');
+            $this->frontend_lang = $this->load->language('forums/frontend', 'en');
         } else {
-            $this->load->language('forums/frontend', $this->config->item('site_language'));
+            $this->frontend_lang = $this->load->language('forums/frontend', $this->config->item('site_language'));
         }
 
 
@@ -74,7 +78,7 @@ class Front_Controller extends MY_Controller{
     {
         // Add languages to the parser.
         $languages = array(
-            'frontend' => $this->load->language('forums/frontend', $this->config->item('site_language')),
+            'frontend' => $this->frontend_lang,
         );
 
         // Meta Data.
