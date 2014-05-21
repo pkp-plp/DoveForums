@@ -210,8 +210,8 @@ class Discussions extends Front_Controller {
             foreach($comments as $row)
             {
                 // Get user rank.
-                $user_rank = $this->dove_core->get_user_xp($row->user_id);
-
+                $user_rank = $this->dove_core->get_user_xp( (int) $row->user_id);
+                
                 $data['comments'][] = array(
                     'comment_info' => array(
                         'comment' => $row->comment,
@@ -223,7 +223,7 @@ class Discussions extends Front_Controller {
                         'user_xp' => element('user_xp', $user_rank),
                         'min_xp' => element('min_xp', $user_rank),
                         'max_xp' => element('max_xp', $user_rank),
-                        'username' => $row->created_by_username,
+                        'username' => anchor( site_url('members/profile/'.$row->created_by_username.''), $row->created_by_username),
                         'signature' => $row->signature,
                         'gravatar' => img(array('src' => $this->gravatar->get_gravatar($row->created_by_email, $this->config->item('gravatar_rating')), 'class' => 'img-thumbnail img-rounded img-responsive')),
                     ),
@@ -315,7 +315,7 @@ class Discussions extends Front_Controller {
                 // Award XP.
                 $this->dove_core->add_xp('1', $this->session->userdata('user_id'));
                 $this->create_message('success', $this->dove_core->messages());
-                redirect ( site_url('discussion/'.$this->categories->get_category_permalink_by_id($discussion_data['category_id']).'/'.$discussion_data['permalink'].'') );
+                redirect ( site_url('discussion/'.$this->categories->get_category_permalink_by_id( (int) element('category_id', $discussion_data) ).'/'.element('permalink', $discussion_data).'') );
             }
             else
             {

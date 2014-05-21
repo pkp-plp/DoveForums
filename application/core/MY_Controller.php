@@ -201,20 +201,6 @@ class Front_Controller extends MY_Controller{
         $this->parser->parse('default', $data);
     }
 
-    public function process_tags($tags)
-    {
-        $tags = explode(",", $tags);
-
-        foreach($tags as $tag)
-        {
-            $data['tags'][] = array(
-                'tag' => anchor( site_url('search/'.$tag.''), $tag, 'class="label label-info"' ),
-            );
-        }
-
-        return $data['tags'];
-    }
-
     public function create_message($type, $message)
     {
         return $this->session->set_flashdata($type, $message);

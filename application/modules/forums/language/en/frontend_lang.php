@@ -57,7 +57,7 @@ $lang['rules_discussion_name'] = 'Discussion Name';
 // Labels
 $lang['label_discussion_name'] = 'Discussion Name';
 $lang['label_comment'] = 'Comment';
-$lang['label_category'] = '%s Category';
+$lang['label_category'] = 'Category';
 $lang['label_tags'] = 'Tags';
 $lang['label_answered'] = '<i class="fa fa-check"></i>&nbsp;Answered';
 $lang['label_unanswered'] = 'Unanswered';

@@ -708,16 +708,17 @@ class Dove_core_m extends CI_Model
 
         if ( $query->num_rows() > 0)
         {
-            $rank = $this->get_rank($query->row('xp'));
+            $rank = $this->get_rank( (int) $query->row('xp') );
 
             foreach($rank as $row)
             {
                 $data = array(
                     'user_xp' => $query->row('xp'),
-                    'rank' => $row['rank'],
-                    'min_xp' => $row['min_xp'],
-                    'max_xp' => $row['max_xp'],
+                    'rank' => $row->rank,
+                    'min_xp' => $row->min_xp,
+                    'max_xp' => $row->max_xp,
                 );
+
             }
 
             return $data;
@@ -737,16 +738,7 @@ class Dove_core_m extends CI_Model
 
         if ( $query->num_rows() > 0 )
         {
-            foreach( $query->result_array() as $row )
-            {
-                $data[] = array(
-                    'rank' => $row['rank'],
-                    'min_xp' => $row['min_xp'],
-                    'max_xp' => $row['max_xp'],
-                );
-            }
-
-            return $data;
+            return $query->result();
         }
         else
         {
@@ -768,8 +760,11 @@ class Dove_core_m extends CI_Model
 
             $new_xp = $current_xp + 1;
 
+            $this->db->where('id', $user_id)
+                        ->update($this->tables['users'], array('xp' => $new_xp));
+
             // Insert new xp.
-            if ( $this->update(array('xp' => $new_xp), array('id' => $user_id), $this->tables['users']) === TRUE )
+            if ( $this->db->affected_rows() > 0 )
             {
                 $this->set_message('xp_added');
                 return TRUE;
